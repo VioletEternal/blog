@@ -1,125 +1,148 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>数论 | EternalTimeLine</title>
-<link rel="shortcut icon" href="https://violeteternal.github.io/favicon.ico?v=1643114917893">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://violeteternal.github.io/favicon.ico?v=1643115296105">
 <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="数论 | EternalTimeLine - Atom Feed" href="https://violeteternal.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-  <meta name="description" content="Eternaltale的OI平行世界" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="Eternaltale的OI平行世界">
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://violeteternal.github.io">
-  <img class="avatar" src="https://violeteternal.github.io/images/avatar.png?v=1643114917893" alt="">
-  </a>
-  <h1 class="site-title">
-    EternalTimeLine
-  </h1>
-  <p class="site-description">
-    Eternaltale的OI平行世界
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 数论
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
-        <h2 class="post-title">【学习笔记】欧拉函数</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://violeteternal.github.io">
+        <img src="https://violeteternal.github.io/images/avatar.png?v=1643115296105" class="site-logo">
+        <h1 class="site-title">EternalTimeLine</h1>
       </a>
-      <div class="post-info">
-        <span>
-          2022-01-25
-        </span>
-        <span>
-          3 min read
-        </span>
-        
-          <a href="https://violeteternal.github.io/tag/8sx7ey24nm/" class="post-tag">
-            # 学习笔记
-          </a>
-        
-          <a href="https://violeteternal.github.io/tag/4wPDury-9s/" class="post-tag">
-            # 数论
-          </a>
-        
-      </div>
-      
-        <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/" class="post-feature-image" style="background-image: url('https://www.imageoss.com/images/2021/12/31/-3709c69b94094e10bcb.jpg')">
-        </a>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://violeteternal.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Eternaltale的OI平行世界
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://violeteternal.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: 数论</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
+                  <h2 class="post-title">【学习笔记】欧拉函数</h2>
+                </a>
+                <div class="post-date">
+                  2022-01-25
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+                <a class="right" href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
+                  <div class="feature-container" style="background-image: url('https://www.imageoss.com/images/2021/12/31/-3709c69b94094e10bcb.jpg')">
+                  </div>
+                </a>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
   </body>
 </html>

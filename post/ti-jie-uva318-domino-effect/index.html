@@ -1,13 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>【题解】UVA318 Domino Effect | EternalTimeLine</title>
-<link rel="shortcut icon" href="https://violeteternal.github.io/favicon.ico?v=1643114917893">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://violeteternal.github.io/favicon.ico?v=1643115296105">
 <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【题解】UVA318 Domino Effect | EternalTimeLine - Atom Feed" href="https://violeteternal.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -19,96 +26,84 @@
 题意解释：
 输入一个 NNN 个点， MMM 条边的无向图，每条边的起点，终点和权值。找出从编号为 111 的点..." />
     <meta name="keywords" content="最短路,图论,题解" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://violeteternal.github.io">
-  <img class="avatar" src="https://violeteternal.github.io/images/avatar.png?v=1643114917893" alt="">
-  </a>
-  <h1 class="site-title">
-    EternalTimeLine
-  </h1>
-  <p class="site-description">
-    Eternaltale的OI平行世界
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://violeteternal.github.io">
+        <img src="https://violeteternal.github.io/images/avatar.png?v=1643115296105" class="site-logo">
+        <h1 class="site-title">EternalTimeLine</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      Eternaltale的OI平行世界
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://violeteternal.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              【题解】UVA318 Domino Effect
-            </h2>
-            <div class="post-info">
-              <span>
-                2022-01-25
-              </span>
-              <span>
-                10 min read
-              </span>
-              
-                <a href="https://violeteternal.github.io/tag/PzFA5IeKS/" class="post-tag">
-                  # 最短路
-                </a>
-              
-                <a href="https://violeteternal.github.io/tag/aP03m10r43/" class="post-tag">
-                  # 图论
-                </a>
-              
-                <a href="https://violeteternal.github.io/tag/YhO8AhuQLs/" class="post-tag">
-                  # 题解
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【题解】UVA318 Domino Effect</h2>
+            <div class="post-date">2022-01-25</div>
             
-              <img class="post-feature-image" src="https://www.imageoss.com/images/2021/12/31/-367c42c699af0bd2759.jpg" alt="">
+              <div class="feature-container" style="background-image: url('https://www.imageoss.com/images/2021/12/31/-367c42c699af0bd2759.jpg')">
+              </div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h3 id="题解">题解：</h3>
+            <div class="post-content" v-pre>
+              <h3 id="题解">题解：</h3>
 <p><a href="https://www.luogu.com.cn/problem/UVA318">题目链接</a></p>
 <p><strong><s>这道题明明很简单我却被卡了很多次</s></strong></p>
 <p>说说这道题的思路：</p>
@@ -378,100 +373,66 @@ int main()
 */
 </code></pre>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E9%A2%98%E8%A7%A3">题解：</a></li>
-</ul>
-</li>
-<li><a href="#%E9%A2%98%E6%84%8F%E8%A7%A3%E9%87%8A">题意解释：</a>
-<ul>
-<li><a href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%BF%E5%9D%97">最短路板块：</a></li>
-<li><a href="#floyd">Floyd：</a></li>
-<li><a href="#spfa%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%86">SPFA<s>已经死了</s>：</a></li>
-</ul>
-</li>
-<li><a href="#%E8%BF%99%E9%81%93%E9%A2%98%E8%BF%87%E4%BA%86%E6%9C%80%E5%A4%9A%E7%9A%84%E6%AD%A3%E8%A7%A3dijkstra">这道题过了最多的正解——Dijkstra：</a>
-<ul>
-<li><a href="#%E8%BF%99%E9%81%93%E9%A2%98%E7%9A%84%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">这道题的其他注意事项：</a></li>
-<li><a href="#%E8%A1%A5%E5%85%85%E4%B8%80%E7%82%B9%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC">补充一点我的代码风格：</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://violeteternal.github.io/tag/PzFA5IeKS/" class="tag">
+                    最短路
+                  </a>
+                
+                  <a href="https://violeteternal.github.io/tag/aP03m10r43/" class="tag">
+                    图论
+                  </a>
+                
+                  <a href="https://violeteternal.github.io/tag/YhO8AhuQLs/" class="tag">
+                    题解
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
+                  <h3 class="post-title">
+                    【学习笔记】欧拉函数
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
-              <h3 class="post-title">
-                【学习笔记】欧拉函数
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://violeteternal.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+
   </body>
 </html>
