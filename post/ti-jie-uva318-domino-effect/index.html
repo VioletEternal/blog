@@ -1,0 +1,477 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>【题解】UVA318 Domino Effect | EternalTimeLine</title>
+<link rel="shortcut icon" href="https://violeteternal.github.io/favicon.ico?v=1643114917893">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【题解】UVA318 Domino Effect | EternalTimeLine - Atom Feed" href="https://violeteternal.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="题解：
+题目链接
+这道题明明很简单我却被卡了很多次
+说说这道题的思路：
+题目很冗长，但其实理解下来很简单，不然为什么是黄题呢。
+题意解释：
+输入一个 NNN 个点， MMM 条边的无向图，每条边的起点，终点和权值。找出从编号为 111 的点..." />
+    <meta name="keywords" content="最短路,图论,题解" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://violeteternal.github.io">
+  <img class="avatar" src="https://violeteternal.github.io/images/avatar.png?v=1643114917893" alt="">
+  </a>
+  <h1 class="site-title">
+    EternalTimeLine
+  </h1>
+  <p class="site-description">
+    Eternaltale的OI平行世界
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              【题解】UVA318 Domino Effect
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-01-25
+              </span>
+              <span>
+                10 min read
+              </span>
+              
+                <a href="https://violeteternal.github.io/tag/PzFA5IeKS/" class="post-tag">
+                  # 最短路
+                </a>
+              
+                <a href="https://violeteternal.github.io/tag/aP03m10r43/" class="post-tag">
+                  # 图论
+                </a>
+              
+                <a href="https://violeteternal.github.io/tag/YhO8AhuQLs/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://www.imageoss.com/images/2021/12/31/-367c42c699af0bd2759.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="题解">题解：</h3>
+<p><a href="https://www.luogu.com.cn/problem/UVA318">题目链接</a></p>
+<p><strong><s>这道题明明很简单我却被卡了很多次</s></strong></p>
+<p>说说这道题的思路：</p>
+<p>题目很冗长，但其实理解下来很简单，<s>不然为什么是黄题呢</s>。</p>
+<h2 id="题意解释">题意解释：</h2>
+<p><strong><em>输入一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个点， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span> 条边的无向图，每条边的起点，终点和权值。找出从编号为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 的点能够到达的最远地点，这个地点可以在点上，也可以在边上。</em></strong></p>
+<p>对于这道题来说，最远的地方，只会有两种情况：</p>
+<p><em><strong>*在某一个点上；</strong></em></p>
+<p><em><strong>*在某两点之间。</strong></em></p>
+<p>从起点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 开始，对图上所有点走一遍最短路，找出到达最远的点，这就是第一种情况的答案，我们可以记录一次。然后将编号 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 至编号 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 的之间的全部点都跑一次，求出最远的边。</p>
+<p>在这里，<s>最朴素</s>我刚开始想到的的方法就是求出到达两点的时间，然后根据时间差按比例分配这条边的权值，就是两边相遇的地点即时间。</p>
+<p>但是，</p>
+<p>实际上，换个角度思考，两组多米诺相遇的时间是一致的，所以从其中一点出发到另一点出发到的那个最远点时间一样，即是从起点到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 点加上起点到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 点的距离再加上这条边的权值。这条边的最远时间就是：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>V</mi><mi>a</mi><mi>l</mi><mi>u</mi><msub><mi>e</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub><mo>=</mo><mo>(</mo><mi>D</mi><mi>i</mi><msub><mi>s</mi><mi>i</mi></msub><mo>+</mo><mi>D</mi><mi>i</mi><msub><mi>s</mi><mi>j</mi></msub><mo>+</mo><mi>P</mi><mi>a</mi><mi>t</mi><msub><mi>h</mi><mrow><mi>i</mi><mi mathvariant="normal">.</mi><mi>j</mi></mrow></msub><mo>)</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">Value_{i,j}=(Dis_i+Dis_j+Path_{i.j})/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">u</span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mtight">.</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/</span><span class="mord">2</span></span></span></span></p>
+<p>上述即是对于答案的枚举，最坏情况为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> ，这道题的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>≤</mo><mn>500</mn></mrow><annotation encoding="application/x-tex">N≤500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 完全足够。</p>
+<h3 id="最短路板块">最短路板块：</h3>
+<p>对于像我这种蒟蒻来说，有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 种方法：</p>
+<h3 id="floyd">Floyd：</h3>
+<p>通过考虑最佳子路径来得到最佳路径。单独一条边的路径也不一定是最佳路径。从任意一条单边路径开始。所有两点之间的距离是边的权的和，(如果两点之间没有边相连,则为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>N</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">INF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span></span></span></span> ）。从第一个顶点开始，依次将每个顶点作为媒介 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> ，然后对于每一对顶点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> ，查看其是否存在一条经过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的，距离比已知路径更短的路径，如果存在则更新它。</p>
+<pre><code class="language-cpp">inline void underFloyd()
+{
+    for(int k=1;k&lt;=N;++k)	//媒介点
+    {
+        for(int i=1;i&lt;=N;++i)	//起点
+        {
+            for(int j=1;j&lt;=N;++j)	//终点
+            {
+                F[i][j]=underMin(F[i][j],F[i][k]+F[k][j]);
+            }
+        }
+    }
+}
+</code></pre>
+<p>Floyd的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>3</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> ，这种算法其实是拿来求全源最短路的，但放在单源最短路的题里依然使用，还是因为数据太小，所以可以选择。</p>
+<h3 id="spfa已经死了">SPFA<s>已经死了</s>：</h3>
+<p>SPFA其实是另一种最短路算法Bellman-Ford的队列优化，但我们一般不使用。（因为太<s>蒻</s>了）</p>
+<p>实际上，SPFA的实现与BFS相差无异。不同的是BFS中一个点如果出了队列就不再会进入队列，而在SPFA中如果一个点出了队列，它还有机会能够进入队列。因为一个点在对别的点进行松弛操作时，自己的最小值也同样会被自己修改过的点再次修改。</p>
+<p>SPFA的复杂度并不是很稳定，最坏情况为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mi>M</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(NM)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mclose">)</span></span></span></span> 。</p>
+<p>一般来说，随机数据的题SPFA和Dijkstra无异，但一般来说，有负权的图使用SPFA，因为Dijkstra不能处理负边权；而在一些毒瘤题里，就会出现<a href="https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;tn=monline_3_dg&amp;wd=%E5%85%B3%E4%BA%8Espfa%E4%BB%96%E6%AD%BB%E4%BA%86&amp;oq=%25E5%2585%25B3%25E4%25BA%258ESPFA&amp;rsv_pq=87887f7600054917&amp;rsv_t=4dbarFQevDh8Ep8JI96yOsaRl1SmYkP51au%2BYmWsvJiGd1oPs8BL8OoqeXZnXvEEMRfC&amp;rqlang=cn&amp;rsv_dl=ts_0&amp;rsv_enter=1&amp;rsv_sug3=1&amp;rsv_sug1=1&amp;rsv_sug7=100&amp;rsv_sug2=1&amp;rsv_btype=t&amp;prefixsug=%25E5%2585%25B3%25E4%25BA%258ESPFA&amp;rsp=0&amp;rsv_sug4=729">关于SPFA……</a></p>
+<p>代码如下：</p>
+<pre><code class="language-cpp">inline void underSPFA(int x)
+{
+	Dis[x]=0;
+	queue&lt;Que&gt;Q;
+	Q.push(Que(x,0));
+	while(!Q.empty())
+	{
+		Que u=Q.front();
+		Q.pop();
+		int k=u.now;
+		Vis[k]=0;
+		for(int e=First[k];e;e=Edge[e].next)
+		{
+			if(Dis[k]+Edge[e].value&lt;Dis[Edge[e].to])
+			{
+				Dis[Edge[e].to]=Dis[k]+Edge[e].value;
+				if(!Vis[Edge[e].to])
+				{
+                   			Vis[Edge[e].to]=1;
+					Q.push(Que(Edge[e].to,Dis[Edge[e].to]));
+				}
+			}
+		}
+	}
+}
+</code></pre>
+<h2 id="这道题过了最多的正解dijkstra">这道题过了最多的正解——Dijkstra：</h2>
+<p>Dijkstra算法采用的是一种贪心的策略，建立一个数组 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dis</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span></span></span></span> 来保存源点到各个顶点的最短距离和一个保存已经找到了最短路径的顶点的集合： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> ，初始时，原点s的路径权重被赋为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> （即 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><msub><mi>s</mi><mi>s</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">dis_s=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> ）。</p>
+<p>若对于顶点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span>存在能直接到达的边 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>s</mi><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(s,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> ，则把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><msub><mi>s</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">dis_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>设为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mo>(</mo><mi>s</mi><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">w(s,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> ,同时把所有其他（ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span> 不能直接到达的）顶点的路径长度设为无穷大。</p>
+<p>初始时，集合顶点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">s</span></span></span></span> 。</p>
+<p>然后，从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dis</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span></span></span></span> 数组选择最小值，则该值就是源点s到该值对应的顶点的最短路径，并且把该点加入到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 中，此时完成一个顶点。</p>
+<p>然后，我们需要看看新加入的顶点是否可以到达其他顶点并且看看通过该顶点到达其他点的路径长度是否比源点直接到达短——如果是，那么就替换这些顶点在dis中的值；然后，又从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dis</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span></span></span></span> 中找出最小值，重复上述动作，直到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 中包含了图的所有顶点。</p>
+<p>这就是Dijkstra的基本思路，但是在深度学习之后，我们一般使用的是Dijkstra的二叉堆（优先队列）优化：</p>
+<pre><code class="language-cpp">inline void underDijkstra(int x)
+{
+	Dis[x]=0;
+	priority_queue&lt;Que&gt;Q;
+	Q.push(Que(x,0));
+	while(!Q.empty())
+	{
+		Que u=Q.top();
+		Q.pop();
+		int k=u.now;
+		if(Vis[k])
+		{
+			continue;
+		}
+		Vis[k]=1;
+		for(int e=First[k];e;e=Edge[e].next)
+		{
+			if(Dis[k]+Edge[e].value&lt;=Dis[Edge[e].to])
+			{
+				Dis[Edge[e].to]=Dis[k]+Edge[e].value;
+				if(!Vis[Edge[e].to])
+				{
+					Q.push(Que(Edge[e].to,Dis[Edge[e].to]));
+				}
+			}
+		}
+	}
+}
+</code></pre>
+<p>而对于最短路来说，我们需要的是小根堆，优先队列初始大根堆。所以我们要重载一次。</p>
+<p>结构体定义如下：</p>
+<pre><code class="language-cpp">struct Que
+{
+	int now;
+    	int d;
+	Que(int _now=0,int _d=0):now(_now),d(_d){}
+    	bool operator&lt;(const Que&amp; test)const		//重载运算符
+	{
+		return d&lt;test.d;
+	}
+};
+</code></pre>
+<h3 id="这道题的其他注意事项">这道题的其他注意事项：</h3>
+<p><strong>*因为有多组数据，所以记得初始化所有相关变量</strong></p>
+<p><strong>*多米诺的英文复数加的是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">es</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mord mathdefault">s</span></span></span></span>！！！</strong></p>
+<p><strong>*输出格式严格按照题目要求，句子后有两个 <span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \n at position 1: \̲n̲\n'>\n\n</span></strong></p>
+<h3 id="补充一点我的代码风格">补充一点我的代码风格：</h3>
+<p><strong>*我喜欢自己重写一些简单的函数代替STL库：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>o</mi><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">sort</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">t</span></span></span></span></strong></p>
+<p><strong>*每一个函数名之前都会加入一个类似于水印作用的标识符under，所以copy的同学记得删掉，而对于under的含义，请移步<a href="https://search.bilibili.com/all?keyword=undertale&amp;from_source=webtop_search&amp;spm_id_from=333.1007">Undertale</a></strong></p>
+<p>蒟蒻第一篇题解，求过QWQ，<s>并厚颜无耻的要波赞。</s></p>
+<p>给上Dijkstra的AC代码：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+using namespace std;
+int N,M,x,y,Total,Test;
+struct Node
+{
+    int start,to,next,value;
+    double time;
+}Edge[1000001];
+bool Vis[1001];
+int First[1001];
+int Dis[1001],z;
+int Path[1001][1001];
+struct Que
+{
+	int now;
+    	int d;
+	Que(int _now=0,int _d=0):now(_now),d(_d){}
+    	bool operator&lt;(const Que&amp; test)const
+	{
+		return d&lt;test.d;
+	}
+};
+inline int underMin(int a,int b)
+{
+    return (a&gt;b?b:a);
+}
+inline int underMax(int a,int b)
+{
+    return (a&gt;b?a:b);
+}
+inline void underAdd(int x,int y,int z)
+{
+    Edge[++Total].value=z;
+    Edge[Total].to=y;
+    Edge[Total].next=First[x];
+    Edge[Total].start=x;
+    First[x]=Total;
+}
+inline void underDijkstra(int x)
+{
+	Dis[x]=0;
+	priority_queue&lt;Que&gt;Q;
+	Q.push(Que(x,0));
+	while(!Q.empty())
+	{
+		Que u=Q.top();
+		Q.pop();
+		int k=u.now;
+		if(Vis[k])
+		{
+			continue;
+		}
+		Vis[k]=1;
+		for(int e=First[k];e;e=Edge[e].next)
+		{
+			if(Dis[k]+Edge[e].value&lt;=Dis[Edge[e].to])
+			{
+				Dis[Edge[e].to]=Dis[k]+Edge[e].value;
+				if(!Vis[Edge[e].to])
+				{
+					Q.push(Que(Edge[e].to,Dis[Edge[e].to]));
+				}
+			}
+		}
+	}
+}
+int main()
+{
+//  freopen(&quot;Domino.in&quot;,&quot;r&quot;,stdin);
+//  freopen(&quot;Domino.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d%d&quot;,&amp;N,&amp;M);
+    while(N!=0)
+    {
+        memset(Edge,0,sizeof(Edge));
+        memset(Vis,0,sizeof(Vis));
+        memset(First,0,sizeof(First));
+        Total=0;
+        memset(Dis,0x42,sizeof(Dis));
+        for(int i=1;i&lt;=M;++i)
+        {
+            scanf(&quot;%d%d%d&quot;,&amp;x,&amp;y,&amp;z);
+            underAdd(x,y,z);
+            underAdd(y,x,z);
+        }
+        underDijkstra(1);
+        for(int i=1;i&lt;=Total;++i)
+        {
+            Edge[i].time=(Dis[Edge[i].to]+Dis[Edge[i].start]+Edge[i].value)/2.0;
+        }
+        int Dp;
+        bool f=0;
+        double Ans=-1;
+        for(int i=1;i&lt;=Total;++i)
+        {
+            if(Edge[i].time&gt;Ans&amp;&amp;Edge[i].time&lt;1e9)
+            {
+                Dp=i;
+                Ans=Edge[i].time;
+            }
+        }
+        for(int i=1;i&lt;=N;++i)
+        {
+            if(Dis[i]&gt;=Ans&amp;&amp;Dis[i]&lt;1e9)
+            {
+                Dp=i;
+                Ans=(double)Dis[i];
+                f=1;
+            }
+        }
+        ++Test;
+        printf(&quot;System #%d\n&quot;,Test);
+        if(f)
+        {
+            printf(&quot;The last domino falls after %.1lf seconds, at key domino %d.\n\n&quot;,Ans,Dp);
+        }
+        else
+        {
+            printf(&quot;The last domino falls after %.1lf seconds, between key dominoes %d and %d.\n\n&quot;,Ans,Edge[Dp].start,Edge[Dp].to);
+        }
+        scanf(&quot;%d%d&quot;,&amp;N,&amp;M);
+    }
+    return 0;
+}
+/*
+2 1
+1 2 27
+3 3
+1 2 5
+1 3 5
+2 3 5
+0 0
+*/
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E8%A7%A3">题解：</a></li>
+</ul>
+</li>
+<li><a href="#%E9%A2%98%E6%84%8F%E8%A7%A3%E9%87%8A">题意解释：</a>
+<ul>
+<li><a href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%9D%BF%E5%9D%97">最短路板块：</a></li>
+<li><a href="#floyd">Floyd：</a></li>
+<li><a href="#spfa%E5%B7%B2%E7%BB%8F%E6%AD%BB%E4%BA%86">SPFA<s>已经死了</s>：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%99%E9%81%93%E9%A2%98%E8%BF%87%E4%BA%86%E6%9C%80%E5%A4%9A%E7%9A%84%E6%AD%A3%E8%A7%A3dijkstra">这道题过了最多的正解——Dijkstra：</a>
+<ul>
+<li><a href="#%E8%BF%99%E9%81%93%E9%A2%98%E7%9A%84%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">这道题的其他注意事项：</a></li>
+<li><a href="#%E8%A1%A5%E5%85%85%E4%B8%80%E7%82%B9%E6%88%91%E7%9A%84%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC">补充一点我的代码风格：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://violeteternal.github.io/post/xue-xi-bi-ji-ou-la-han-shu/">
+              <h3 class="post-title">
+                【学习笔记】欧拉函数
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://violeteternal.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
