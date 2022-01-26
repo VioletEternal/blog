@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-01-26T10:00:12.822Z</updated>
+    <updated>2022-01-26T10:15:17.304Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[关于]]></title>
+        <id>https://violeteternal.github.io/post/about/</id>
+        <link href="https://violeteternal.github.io/post/about/">
+        </link>
+        <updated>2022-01-26T10:06:30.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="你好">你好！</h2>
+<p>一名OIer，目前机房最蒻的蒟蒻，连续三年CSP-J崩掉之后终于一等了QWQ，现在whq和OI一样蒻。今年中考也要加油了呢QWQ</p>
+<p>头图事最爱的<a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">Warma</a>酱！！！</p>
+<p>厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=UnderTale&amp;fenlei=256&amp;oq=UT&amp;rsv_pq=9dbf7f6900027a78&amp;rsv_t=fe55UbE1mYctmBFeShV%2FIFYeG6fvVYMJ7l4ptAHdCEgj5QXZ0mj6ONkSVgGpEaBE9Wme&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=2085&amp;rsv_sug3=5&amp;rsv_sug1=5&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=2769">UT</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=MineCraft&amp;fenlei=256&amp;oq=UnderTale&amp;rsv_pq=894890590000e1c2&amp;rsv_t=e703epEk%2Ff1tPGqV863zx%2BAB227kAS1emJMawbNG3qIIg7rb5Lo88Y7c%2BTmorTVzfHDp&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=2508&amp;rsv_sug3=7&amp;rsv_sug1=7&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=3177">MC</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=Plants%20vs%20Zombies&amp;fenlei=256&amp;oq=Mine%2526lt%253Braft&amp;rsv_pq=878beeb80000d2d5&amp;rsv_t=63f76UHPn%2FV7xfVTAsnzoIiuI6CKrrMm%2F1YWHmD44DabcPvC%2FsEpBLZffQdiCF1jEZRA&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=10097&amp;rsv_sug3=13&amp;rsv_sug1=13&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=10466">PVZ</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=fl&amp;fenlei=256&amp;oq=Plants%2520vs%2520Zombies&amp;rsv_pq=df92f9630002e40e&amp;rsv_t=ede8a2z5Ml%2FFoE6eDC5BmJSJN1TiTmjnXAkmrzrxbAE97mqF8lNuswBtVX7jvp56c1SK&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=682&amp;rsv_sug3=15&amp;rsv_sug1=15&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=1019">FL</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=DeltaRune&amp;fenlei=256&amp;oq=deltarune&amp;rsv_pq=f7c6642b0002ac66&amp;rsv_t=11a9e6aVdgyq3PyfOMlqjPiu5ia1MikjOXgNFzIHYkqWwtvdi7IsnMYCceNa24zml4wl&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=3768&amp;rsv_sug3=23&amp;rsv_sug1=23&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=3768&amp;rsv_sug=1">DR</a>……爱好超级广泛哒QWQ</p>
+<p>附上蒟蒻的LG：<a href="https://www.luogu.com.cn/user/444040"><em>Eternal</em></a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【题解】NOIP2022.01.26模拟赛]]></title>
         <id>https://violeteternal.github.io/post/ti-jie-noip20220126-mo-ni-sai/</id>
