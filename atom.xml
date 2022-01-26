@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-01-26T10:16:50.561Z</updated>
+    <updated>2022-01-26T10:18:10.062Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -191,7 +191,7 @@ int main()
 */
 </code></pre>
 <p>头图来源：</p>
-<h1 id="colorpinkmathfrakwarma"><a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">$ \color{Pink}{\mathfrak{Warma}} $</a></h1>
+<h1 id="colorpinkmathfrakwarma"><a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="Pink"><mrow><mi mathvariant="fraktur">W</mi><mi mathvariant="fraktur">a</mi><mi mathvariant="fraktur">r</mi><mi mathvariant="fraktur">m</mi><mi mathvariant="fraktur">a</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{Pink}{\mathfrak{Warma}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69141em;vertical-align:0em;"></span><span class="mord" style="color:Pink;"><span class="mord" style="color:Pink;"><span class="mord mathfrak" style="color:Pink;">W</span><span class="mord mathfrak" style="color:Pink;">a</span><span class="mord mathfrak" style="color:Pink;">r</span><span class="mord mathfrak" style="color:Pink;">m</span><span class="mord mathfrak" style="color:Pink;">a</span></span></span></span></span></span></a></h1>
 ]]></content>
     </entry>
     <entry>
@@ -807,7 +807,7 @@ int main()
 <p><a href="https://www.luogu.com.cn/problem/P6327">区间求sin和，需要使用数学知识</a></p>
 <p><a href="https://www.luogu.com.cn/problem/P5648">卡常卡码风的毒瘤题</a></p>
 <p>头图来源：</p>
-<h1 id="colorpinkmathfrakwarma"><a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">$ \color{Pink}{\mathfrak{Warma}} $</a></h1>
+<h1 id="colorpinkmathfrakwarma"><a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="Pink"><mrow><mi mathvariant="fraktur">W</mi><mi mathvariant="fraktur">a</mi><mi mathvariant="fraktur">r</mi><mi mathvariant="fraktur">m</mi><mi mathvariant="fraktur">a</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{Pink}{\mathfrak{Warma}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69141em;vertical-align:0em;"></span><span class="mord" style="color:Pink;"><span class="mord" style="color:Pink;"><span class="mord mathfrak" style="color:Pink;">W</span><span class="mord mathfrak" style="color:Pink;">a</span><span class="mord mathfrak" style="color:Pink;">r</span><span class="mord mathfrak" style="color:Pink;">m</span><span class="mord mathfrak" style="color:Pink;">a</span></span></span></span></span></span></a></h1>
 ]]></content>
     </entry>
 </feed>
