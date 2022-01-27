@@ -3228,6 +3228,14 @@ a {
   }
 }
 
+      .posttitlewithoutimg {
+        color: #4c6ef5;
+      }
+    
+        .posttitle {
+          color: #845ef7;
+        }
+      
         .sitename{
           font-family: Comic Sans MS;
         }
