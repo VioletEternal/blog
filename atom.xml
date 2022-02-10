@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-10T02:00:21.920Z</updated>
+    <updated>2022-02-10T02:16:50.566Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,106 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】P3193 GT考试]]></title>
+        <id>https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/</id>
+        <link href="https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/">
+        </link>
+        <updated>2022-02-10T02:07:49.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3193">题目传送门</a></p>
+<p>预处理 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">DP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 数组的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>M</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KMP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 预配指针，再矩阵快速幂求出所有的集合。</p>
+<p>使用闫氏DP分析法可得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 数组的集合意义。</p>
+<p>AC Code：</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int MAXN=21;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+int N,M,K;
+int f[MAXN][MAXN];      //f(i,j)表示所有长度为i，且不包含M串
+                        //且该串的末尾部分和S串当前匹配的最大长度为j
+                        //的所有字符串的集合。
+char str[MAXN];
+int Kmp[MAXN];
+inline void underExpr(int c[][MAXN],int a[][MAXN],int b[][MAXN])
+{
+    static int t[MAXN][MAXN];
+    memset(t,0,sizeof(t));
+    for(int i=0;i&lt;M;++i)
+        for(int j=0;j&lt;M;++j)
+            for(int k=0;k&lt;M;++k)
+                t[i][j]=(t[i][j]+a[i][k]*b[k][j])%K;
+    for(int i=0;i&lt;M;++i)
+        for(int j=0;j&lt;M;++j)
+            c[i][j]=t[i][j];
+}
+inline int underQuickPow(int k)
+{
+    int f0[MAXN][MAXN]={1};
+    while(k)
+    {
+        if(k&amp;1) underExpr(f0,f0,f);
+        underExpr(f,f,f);
+        k&gt;&gt;=1;
+    }
+    int res=0;
+    for(int i=0;i&lt;M;++i) res=(res+f0[0][i])%K;
+    return res;
+}
+int main()
+{
+    // freopen(&quot;GTtest.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;GTtest.out&quot;,&quot;w&quot;,stdout);
+    underRead(N),underRead(M),underRead(K);
+    scanf(&quot;%s&quot;,str+1);
+    for(int i=2,j=0;i&lt;=M;++i)
+    {
+        while(j&amp;&amp;str[j+1]!=str[i]) j=Kmp[j];
+        if(str[j+1]==str[i])++j;
+        Kmp[i]=j;
+    }
+    //初始化f
+    for(int j=0;j&lt;M;++j)
+        for(int c='0';c&lt;='9';++c)
+        {
+            int k=j;
+            while(k&amp;&amp;str[k+1]!=c) k=Kmp[k];
+            if(str[k+1]==c) ++k;
+            if(k&lt;M) ++f[j][k];
+        }
+    //f(n)=f(0)+A^N
+    printf(&quot;%d&quot;,underQuickPow(N));
+    return 0;
+}
+/*
+4 3 100
+111
+*/
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【学习笔记】闫氏DP分析法]]></title>
         <id>https://violeteternal.github.io/post/xue-xi-bi-ji-yan-shi-dp-fen-xi-fa/</id>
