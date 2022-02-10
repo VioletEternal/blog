@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-10T02:42:56.514Z</updated>
+    <updated>2022-02-10T06:41:36.151Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,104 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】P1771 方程的解]]></title>
+        <id>https://violeteternal.github.io/post/ti-jie-p1771-fang-cheng-de-jie/</id>
+        <link href="https://violeteternal.github.io/post/ti-jie-p1771-fang-cheng-de-jie/">
+        </link>
+        <updated>2022-02-10T06:36:08.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1771">题目传送门</a></p>
+<h2 id="思路">思路</h2>
+<ol>
+<li>计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
+</ol>
+<p>使用快速幂，时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<ol start="2">
+<li>推导答案</li>
+</ol>
+<p><s>过程略</s>，得到答案即为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><mn>1</mn></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">C^{k-1}_{g(x)-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4044389999999998em;vertical-align:-0.5151999999999999em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8892389999999999em;"><span style="top:-2.3598em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mclose mtight">)</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5151999999999999em;"><span></span></span></span></span></span></span></span></span></span> ，也是杨辉三角第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 行的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数。</p>
+<ol start="3">
+<li>高精度求答案即可</li>
+</ol>
+<h2 id="ac-code">AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int Mod=1000;
+const int MAXN=151;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+int k,x,f[1001][101][MAXN];
+int a[10001][MAXN],j;
+inline int underQPow(int a,int b,int p)
+{
+    int t=b,res=1;
+    while(t)
+    {
+        if(t&amp;1) res=(res*a)%p;
+        a=(a*a)%p;
+        t&gt;&gt;=1;
+    }
+    return res%p;
+}
+inline void underAdd(int c[],int a[],int b[])
+{
+    for(int i=0,t=0;i&lt;MAXN;++i)
+    {
+        t+=a[i]+b[i];
+        c[i]=t%10;
+        t/=10;
+    }
+}
+int main()
+{
+    // freopen(&quot;equation.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;equation.out&quot;,&quot;w&quot;,stdout);
+    underRead(k),underRead(x);
+    int n=underQPow(x%Mod,x,Mod);
+    //C(n-1,k-1)
+    for(int i=0;i&lt;n;++i)
+        for(int j=0;j&lt;=i&amp;&amp;j&lt;k;++j)
+        {
+            if(!j) f[i][j][0]=1;
+            else underAdd(f[i][j],f[i-1][j],f[i-1][j-1]);
+        }
+    int *g=f[n-1][k-1];
+    int i=MAXN-1;
+    while(!g[i]) --i;
+    while(i&gt;=0) printf(&quot;%d&quot;,g[i--]);
+    return 0;
+}
+/*
+3 2
+
+n=x-1
+m=k-1
+*/
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3193 GT考试]]></title>
         <id>https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/</id>
@@ -1257,153 +1355,6 @@ int main()
 <blockquote>
 <p>则有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>a</mi><mrow><mo>(</mo><mi>p</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow></msup><mo>≡</mo><mn>1</mn><mspace></mspace><mspace width="0.4444444444444444em"/><mo>(</mo><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mspace width="0.3333333333333333em"/><mi>p</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">a^{(p-1)} \equiv 1 \pmod p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">p</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.4444444444444444em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.3333333333333333em;"></span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span>。</p>
 </blockquote>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【学习笔记】线段树]]></title>
-        <id>https://violeteternal.github.io/post/xue-xi-bi-ji-xian-duan-shu/</id>
-        <link href="https://violeteternal.github.io/post/xue-xi-bi-ji-xian-duan-shu/">
-        </link>
-        <updated>2022-01-25T08:08:57.000Z</updated>
-        <content type="html"><![CDATA[<p>线段树是用来维护区间权值的一种数据结构，根据同机房巨佬而言，一般需要使用线段树的题考点都不在线段树上，<s>不过线段树真滴好用</s></p>
-<hr>
-<h2 id="线段树的操作">线段树的操作：</h2>
-<h2 id="i建树">Ⅰ.建树</h2>
-<p>我的习惯为使用结构体存储（就和链式前向星一样），也可以分开打：</p>
-<pre><code class="language-cpp">struct SegmentTree
-{
-	int l,r,dat;
-	//int tag;
-}Tree[N&lt;&lt;2];
-</code></pre>
-<p>一般来说，线段树的数组需要开四倍 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 空间，因为他比线性结构要多一层，而开四倍一般不会爆。</p>
-<h3 id="代码讲解">代码讲解：</h3>
-<p>对于其中之一 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>r</mi><mi>e</mi><mi>e</mi><mo>[</mo><mi>p</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">Tree[p]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">e</span><span class="mopen">[</span><span class="mord mathdefault">p</span><span class="mclose">]</span></span></span></span> 中：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 表示第p个编号所表示的区域起点为原线性结构的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mi>l</mi></msub></mrow><annotation encoding="application/x-tex">A_l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ；</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 表示第p个编号所表示的区域终点为原线性结构的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">A_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ；</p>
-<p>子节点保证： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mo>=</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">l=r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> ；</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dat</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span></span></span></span> 表示该区域的一个数据，一般视题目而定，且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dat</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span></span></span></span> 的个数也不定。</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">tag</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span> 可有也可不有（如果是区间修改的题一般都有），表示“懒惰标记”，之后详解。</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span> 结点的子结点为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>∗</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">p*2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>∗</mo><mn>2</mn><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p*2+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6597200000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> ，一般在代码中写为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>&lt;</mo><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p&lt;&lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>&lt;</mo><mo>&lt;</mo><mn>1</mn><mi mathvariant="normal">∣</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">p&lt;&lt;1|1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">∣</span><span class="mord">1</span></span></span></span> 来节约时间（因为位运算时间复杂度＜乘法复杂度）</p>
-<h3 id="建树一般使用递归建树">建树一般使用递归建树：</h3>
-<pre><code class="language-cpp">inline void underBuild(int p,int l,int r)
-{
-    Tree[p].l=l;
-    Tree[p].r=r;
-    if(l==r)		//到达子结点
-    {
-        Tree[p].dat=Val[l];
-        return ;
-    }
-    int mid=(l+r)&gt;&gt;1;
-    underBuild(p&lt;&lt;1,l,mid);
-    underBuild(p&lt;&lt;1|1,mid+1,r);
-    underPushUp(p);
-}
-</code></pre>
-<h2 id="ii查询">Ⅱ.查询</h2>
-<p><strong>以查询该区间权值和为例：</strong></p>
-<p>如果该结点在需要查询的区间内，返回该点权值；</p>
-<p>如果不在搜索子结点，如果需要的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi></mrow><annotation encoding="application/x-tex">l</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> 比该结点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">mid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span> 小，则搜索 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>l</mi><mo separator="true">,</mo><mi>m</mi><mi>i</mi><mi>d</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(l,mid)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span>；如果需要的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 比该结点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>i</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">mid</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span></span></span> 大，则搜索<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>m</mi><mi>i</mi><mi>d</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>r</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(mid+1,r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mclose">)</span></span></span></span>。</p>
-<p>具体操作看函数：</p>
-<pre><code class="language-cpp">inline long long underQuery(int p,int l,int r)
-{
-    if(Tree[p].l&gt;=l&amp;&amp;r&gt;=Tree[p].r)
-    {
-        return Tree[p].dat;
-    }
-    underSpread(p);		//区间修改的操作，之后详解
-    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
-    long long val=0;
-    if(l&lt;=mid)
-    {
-        val+=underQuery(p&lt;&lt;1,l,r);
-    }
-    if(mid&lt;r)
-    {
-        val+=underQuery(p&lt;&lt;1|1,l,r);
-    }
-    return val;
-}
-</code></pre>
-<h2 id="iii单点修改">Ⅲ.单点修改</h2>
-<p>找到该点的编号，从下至上修改它的所有父结点直到，依然使用递归操作。</p>
-<p><strong><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>a</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">dat</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">t</span></span></span></span> 存储该区间的区间和</strong>：</p>
-<pre><code class="language-cpp">inline void underChange(int p,int v,int k)
-{
-    if(Tree[p].l==v&amp;&amp;Tree[p].r==v)
-    {
-        Tree[p].dat=k;			//到达子结点后修改dat值
-        return ;
-    }
-    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
-    if(v&lt;=mid)
-    {
-        underChange(p&lt;&lt;1,l,r,k);
-    }
-    if(v&gt;mid)
-    {
-        underChange(p&lt;&lt;1|1,l,r,k);
-    }
-    Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
-}
-</code></pre>
-<h2 id="iv向上传递pushup">Ⅳ.向上传递（pushup）</h2>
-<p>即函数underPushUp，一般都是视题目而定。</p>
-<p><strong>以区间和为例：</strong></p>
-<pre><code class="language-cpp">inline void underPushUp(int p)
-{
-	Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
-}
-</code></pre>
-<p><s>似乎这个例子没什么说服力</s>，不过的确是这样的。</p>
-<h2 id="v向下传递pushdownspread">Ⅴ.向下传递（pushdown/spread）</h2>
-<p>只限于懒惰标记。当我们需要改变该区间中的子区间才会向下传递，这样可以优化时间，否则每一次区间修改都会花费 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 的时间复杂度。</p>
-<p><strong>依然以区间和为例：</strong></p>
-<pre><code class="language-cpp">inline void underSpread(int p)
-{
-    if(Tree[p].tag)
-    {
-        Tree[p&lt;&lt;1].dat+=Tree[p].tag*(Tree[p&lt;&lt;1].r-Tree[p&lt;&lt;1].l+1);
-        Tree[p&lt;&lt;1|1].dat+=Tree[p].tag*(Tree[p&lt;&lt;1|1].r-Tree[p&lt;&lt;1|1].l+1);
-        Tree[p&lt;&lt;1].tag+=Tree[p].tag;
-        Tree[p&lt;&lt;1|1].tag+=Tree[p].tag;
-        Tree[p].tag=0;
-    }
-}
-</code></pre>
-<h2 id="vi区间修改">Ⅵ.区间修改</h2>
-<p>使用懒惰标记，可以让时间复杂度降到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(logN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span> 。</p>
-<p><strong>依然以区间和为例：</strong></p>
-<pre><code class="language-cpp">inline void underModify(int p,int l,int r,int k)
-{
-    if(l&lt;=Tree[p].l&amp;&amp;Tree[p].r&lt;=r)
-    {
-        Tree[p].dat+=k*(Tree[p].r-Tree[p].l+1);
-        Tree[p].tag+=k;
-        return ;
-    }
-    underSpread(p);
-    int mid=(Tree[p].l+Tree[p].r)/2;
-    if(l&lt;=mid)
-    {
-        underModify(p&lt;&lt;1,l,r,k);
-    }
-    if(r&gt;mid)
-    {
-        underModify(p&lt;&lt;1|1,l,r,k);
-    }
-    Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
-}
-</code></pre>
-<h2 id="一些练习">一些练习</h2>
-<p><a href="https://www.luogu.com.cn/problem/P3372">区间修改区间查找模板题</a></p>
-<p><a href="https://www.luogu.com.cn/problem/P4513">区间最大子段和模板题</a></p>
-<p><a href="https://www.luogu.com.cn/problem/P2574">P2574 XOR的艺术</a></p>
-<p><a href="https://www.luogu.com.cn/problem/P6327">区间求sin和，需要使用数学知识</a></p>
-<p><a href="https://www.luogu.com.cn/problem/P5648">卡常卡码风的毒瘤题</a></p>
-<p>头图来源：<br>
-<a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">Warma</a></p>
 ]]></content>
     </entry>
 </feed>

@@ -2,12 +2,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="你好！
-一名OIer，目前机房最蒻的蒟蒻，连续三年CSP-J崩掉之后终于一等了QWQ，现在whq和OI一样蒻。今年中考也要加油了呢QWQ
-头图事最爱的Warma酱！！！
-厨UT，厨MC，厨PVZ，厨FL，厨DR……爱好超级广泛哒QWQ
-附上..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题目传送门
+思路
+
+计算 g(x)g(x)g(x)
+
+使用快速幂，时间复杂度 O(log⁡n)O(\log n)O(logn)
+
+推导答案
+
+过程略，得到答案即为 Cg(x)−1k−1C^{k-1}_{g(x)-1}Cg(x)−1k−1​ ..." />
+    <meta name="keywords" content="组合数学,题解,数论" />
     <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
     <!-- 代码渲染风格css -->
@@ -49,7 +54,7 @@
         });
     </script>
     
-    <title>关于</title>
+    <title>【题解】P1771 方程的解</title>
 
     <!-- 大纲索引css调整 -->
     
@@ -1100,32 +1105,129 @@ menulist.eq(i).show();
         <div class="postshow postpadding" style="padding-bottom: 0;">
             
             <div class="postdetailimg">
-                <img src="https://www.imageoss.com/images/2021/12/31/Warma-Boom-102dced28ed54996c5.png" class="postimage" style="cursor:auto">
+                <img src="https://www.imageoss.com/images/2021/12/31/-365cbd0366420e2ea30.jpg" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2022-01-26</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2022-02-10</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 3 min read</div>
                 <div class="posttag">
+                    
+                    <a data-pjax href="https://violeteternal.github.io/tag/D1-6N0cVL/" class="postlink">
+                        <i class="fa fa-tag"></i> 组合数学
+                    </a>
+                    
+                    <a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs/" class="postlink">
+                        <i class="fa fa-tag"></i> 题解
+                    </a>
+                    
+                    <a data-pjax href="https://violeteternal.github.io/tag/4wPDury-9s/" class="postlink">
+                        <i class="fa fa-tag"></i> 数论
+                    </a>
                     
                 </div>
             </div>
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2 id="ptitle">关于</h2>
+                <h2 id="ptitle">【题解】P1771 方程的解</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://violeteternal.github.io/post/about/</div>
+                <div id="pl" style="display:none">https://violeteternal.github.io/post/ti-jie-p1771-fang-cheng-de-jie/</div>
                 <div id="rootaddr" style="display:none">https://violeteternal.github.io</div>
                 
                     
                 
             </div>
             <div class="text ">
-                <h2 id="你好">你好！</h2>
-<p>一名OIer，目前机房最蒻的蒟蒻，连续三年CSP-J崩掉之后终于一等了QWQ，现在whq和OI一样蒻。今年中考也要加油了呢QWQ</p>
-<p>头图事最爱的<a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">Warma</a>酱！！！</p>
-<p>厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=UnderTale&amp;fenlei=256&amp;oq=UT&amp;rsv_pq=9dbf7f6900027a78&amp;rsv_t=fe55UbE1mYctmBFeShV%2FIFYeG6fvVYMJ7l4ptAHdCEgj5QXZ0mj6ONkSVgGpEaBE9Wme&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=2085&amp;rsv_sug3=5&amp;rsv_sug1=5&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=2769">UT</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=MineCraft&amp;fenlei=256&amp;oq=UnderTale&amp;rsv_pq=894890590000e1c2&amp;rsv_t=e703epEk%2Ff1tPGqV863zx%2BAB227kAS1emJMawbNG3qIIg7rb5Lo88Y7c%2BTmorTVzfHDp&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=2508&amp;rsv_sug3=7&amp;rsv_sug1=7&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=3177">MC</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=Plants%20vs%20Zombies&amp;fenlei=256&amp;oq=Mine%2526lt%253Braft&amp;rsv_pq=878beeb80000d2d5&amp;rsv_t=63f76UHPn%2FV7xfVTAsnzoIiuI6CKrrMm%2F1YWHmD44DabcPvC%2FsEpBLZffQdiCF1jEZRA&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=10097&amp;rsv_sug3=13&amp;rsv_sug1=13&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=10466">PVZ</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=fl&amp;fenlei=256&amp;oq=Plants%2520vs%2520Zombies&amp;rsv_pq=df92f9630002e40e&amp;rsv_t=ede8a2z5Ml%2FFoE6eDC5BmJSJN1TiTmjnXAkmrzrxbAE97mqF8lNuswBtVX7jvp56c1SK&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=682&amp;rsv_sug3=15&amp;rsv_sug1=15&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=1019">FL</a>，厨<a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=monline_3_dg&amp;wd=DeltaRune&amp;fenlei=256&amp;oq=deltarune&amp;rsv_pq=f7c6642b0002ac66&amp;rsv_t=11a9e6aVdgyq3PyfOMlqjPiu5ia1MikjOXgNFzIHYkqWwtvdi7IsnMYCceNa24zml4wl&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=3768&amp;rsv_sug3=23&amp;rsv_sug1=23&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=3768&amp;rsv_sug=1">DR</a>……爱好超级广泛哒QWQ</p>
-<p>附上蒟蒻的LG：<a href="https://www.luogu.com.cn/user/444040"><em>Eternal</em></a></p>
+                <p><a href="https://www.luogu.com.cn/problem/P1771">题目传送门</a></p>
+<h2 id="思路">思路</h2>
+<ol>
+<li>计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
+</ol>
+<p>使用快速幂，时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<ol start="2">
+<li>推导答案</li>
+</ol>
+<p><s>过程略</s>，得到答案即为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><mn>1</mn></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">C^{k-1}_{g(x)-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4044389999999998em;vertical-align:-0.5151999999999999em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8892389999999999em;"><span style="top:-2.3598em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mclose mtight">)</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5151999999999999em;"><span></span></span></span></span></span></span></span></span></span> ，也是杨辉三角第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 行的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数。</p>
+<ol start="3">
+<li>高精度求答案即可</li>
+</ol>
+<h2 id="ac-code">AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int Mod=1000;
+const int MAXN=151;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+int k,x,f[1001][101][MAXN];
+int a[10001][MAXN],j;
+inline int underQPow(int a,int b,int p)
+{
+    int t=b,res=1;
+    while(t)
+    {
+        if(t&amp;1) res=(res*a)%p;
+        a=(a*a)%p;
+        t&gt;&gt;=1;
+    }
+    return res%p;
+}
+inline void underAdd(int c[],int a[],int b[])
+{
+    for(int i=0,t=0;i&lt;MAXN;++i)
+    {
+        t+=a[i]+b[i];
+        c[i]=t%10;
+        t/=10;
+    }
+}
+int main()
+{
+    // freopen(&quot;equation.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;equation.out&quot;,&quot;w&quot;,stdout);
+    underRead(k),underRead(x);
+    int n=underQPow(x%Mod,x,Mod);
+    //C(n-1,k-1)
+    for(int i=0;i&lt;n;++i)
+        for(int j=0;j&lt;=i&amp;&amp;j&lt;k;++j)
+        {
+            if(!j) f[i][j][0]=1;
+            else underAdd(f[i][j],f[i-1][j],f[i-1][j-1]);
+        }
+    int *g=f[n-1][k-1];
+    int i=MAXN-1;
+    while(!g[i]) --i;
+    while(i&gt;=0) printf(&quot;%d&quot;,g[i--]);
+    return 0;
+}
+/*
+3 2
+
+n=x-1
+m=k-1
+*/
+</code></pre>
 
             </div>
             <hr style="width: 80%;">
@@ -1140,7 +1242,7 @@ menulist.eq(i).show();
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>written by _Eternal_</li>
-            <li><strong>原文链接：</strong>https://violeteternal.github.io/post/about/</li>
+            <li><strong>原文链接：</strong>https://violeteternal.github.io/post/ti-jie-p1771-fang-cheng-de-jie/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
@@ -1168,6 +1270,18 @@ menulist.eq(i).show();
         <div id="otherpost">
             
             
+            <a data-pjax class="next-post-pc" href="https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/"  style="color: black;">
+                <div id="npcontainer">
+                    
+                    <img src="https://www.imageoss.com/images/2021/12/31/-364ff8c65fc73fc7374.jpg" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">【题解】P3193 GT考试</h4>
+                </div>
+            </a>
+            <div class="next-post">
+                下一篇 <a  data-pjax href="https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/">【题解】P3193 GT考试</a>
+            </div>
+            
         </div>
     </div>
     </div>
@@ -1188,7 +1302,8 @@ menulist.eq(i).show();
                         <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E4%BD%A0%E5%A5%BD">你好！</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#ac-code">AC Code：</a></li>
 </ul>
 </li>
 </ul>
