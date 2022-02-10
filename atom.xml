@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-10T10:48:33.755Z</updated>
+    <updated>2022-02-10T10:59:45.960Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,255 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】SP2713&P4145]]></title>
+        <id>https://violeteternal.github.io/post/ti-jie-sp2713andp4145/</id>
+        <link href="https://violeteternal.github.io/post/ti-jie-sp2713andp4145/">
+        </link>
+        <updated>2022-02-10T10:54:30.000Z</updated>
+        <content type="html"><![CDATA[<p>双倍经验~</p>
+<p><a href="https://www.luogu.com.cn/problem/P4145">上帝造题的七分钟</a></p>
+<p><a href="https://www.luogu.com.cn/problem/SP2713">Can you answer these queries</a></p>
+<p>区间开方操作，暴力修改。</p>
+<h2 id="技巧">技巧：</h2>
+<p>即使是最大的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>1</mn></msup><mn>8</mn></mrow><annotation encoding="application/x-tex">10^18</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mord">8</span></span></span></span> 开方 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 次之后也会变为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 。</p>
+<p>记录当前区间已经改过的次数，大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> 时则不需要了。</p>
+<p>也可以记录区间最大值，若最大值小于等于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 则不需要了。</p>
+<h2 id="p4145-ac-code">P4145 AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long LL;
+int N,M,op,x,y;
+LL Val[100001];
+struct Node
+{
+    int l,r;
+    LL dat,maxn;
+}Tree[100001*4];
+inline LL underMax(LL a,LL b)
+{
+    return (a&gt;b?a:b);
+}
+inline void underSwap(int &amp;x,int &amp;y)
+{
+    int t=x;x=y;y=t;
+}
+inline void underBuild(int p,int l,int r)
+{
+    Tree[p].l=l;
+    Tree[p].r=r;
+    if(l==r)
+    {
+        Tree[p].dat=Tree[p].maxn=Val[l];
+        return ;
+    }
+    int mid=(l+r)&gt;&gt;1;
+    underBuild(p&lt;&lt;1,l,mid);
+    underBuild(p&lt;&lt;1|1,mid+1,r);
+    Tree[p].maxn=underMax(Tree[p&lt;&lt;1].maxn,Tree[p&lt;&lt;1|1].maxn);
+    Tree[p].dat+=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
+}
+inline void underModify(int p,int l,int r)
+{
+    if(Tree[p].maxn&lt;=1)
+    {
+        return ;
+    }
+    if(Tree[p].l==Tree[p].r)
+    {
+        Val[Tree[p].l]=sqrt(Val[Tree[p].l]);
+        Tree[p].dat=Tree[p].maxn=Val[Tree[p].l];
+        return ;
+    }
+    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
+    if(l&lt;=mid)
+    {
+        underModify(p&lt;&lt;1,l,r);
+    }
+    if(r&gt;mid)
+    {
+        underModify(p&lt;&lt;1|1,l,r);
+    }
+    Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
+    Tree[p].maxn=underMax(Tree[p&lt;&lt;1].maxn,Tree[p&lt;&lt;1|1].maxn);
+}
+inline LL underQuery(int p,int l,int r)
+{
+    if(Tree[p].l&gt;=l&amp;&amp;Tree[p].r&lt;=r)
+    {
+        return Tree[p].dat;
+    }
+    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
+    LL val=0;
+    if(l&lt;=mid)
+    {
+        val+=underQuery(p&lt;&lt;1,l,r);
+    }
+    if(r&gt;mid)
+    {
+        val+=underQuery(p&lt;&lt;1|1,l,r);
+    }\
+    return val;
+}
+int main()
+{
+//  freopen(&quot;god.in&quot;,&quot;r&quot;,stdin);
+//  freopen(&quot;god.out&quot;,&quot;w&quot;,stdout);
+    scanf(&quot;%d&quot;,&amp;N);
+    for(int i=1;i&lt;=N;++i)
+    {
+        scanf(&quot;%lld&quot;,&amp;Val[i]);
+    }
+    underBuild(1,1,N);
+    scanf(&quot;%d&quot;,&amp;M);
+    for(int i=1;i&lt;=M;++i)
+    {
+        scanf(&quot;%d%d%d&quot;,&amp;op,&amp;x,&amp;y);
+        if(x&gt;y)
+        {
+            underSwap(x,y);
+        }
+        if(op==0)
+        {
+            underModify(1,x,y);
+        }
+        else
+        {
+            printf(&quot;%lld\n&quot;,underQuery(1,x,y));
+        }
+    }
+    return 0;
+}
+/*
+10
+1 2 3 4 5 6 7 8 9 10
+5
+0 1 10
+1 1 10
+1 1 5
+0 5 8
+1 4 8
+*/
+</code></pre>
+<h2 id="sp2713-ac-code">SP2713 AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long LL;
+const int MAXN=1e6+1;
+int N,M,op,x,y;
+LL Val[MAXN];
+struct Node
+{
+    int l,r;
+    LL dat,maxn;
+}Tree[MAXN&lt;&lt;2];
+inline void underSwap(int &amp;x,int &amp;y)
+{
+    x^=y^=x^=y;
+}
+inline void underBuild(int p,int l,int r)
+{
+    Tree[p].l=l,Tree[p].r=r;
+    if(l==r)
+    {
+        Tree[p].dat=Tree[p].maxn=Val[l];
+        return ;
+    }
+    int mid=(l+r)&gt;&gt;1;
+    underBuild(p&lt;&lt;1,l,mid);
+    underBuild(p&lt;&lt;1|1,mid+1,r);
+    Tree[p].maxn=underMax(Tree[p&lt;&lt;1].maxn,Tree[p&lt;&lt;1|1].maxn);
+    Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
+}
+inline void underModify(int p,int l,int r)
+{
+    if(Tree[p].maxn&lt;=1) return ;
+    if(Tree[p].l==Tree[p].r)
+    {
+        Val[Tree[p].l]=sqrt(Val[Tree[p].l]);
+        Tree[p].dat=Tree[p].maxn=Val[Tree[p].l];
+        return ;
+    }
+    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
+    if(l&lt;=mid&amp;&amp;Tree[p&lt;&lt;1].maxn&gt;1) underModify(p&lt;&lt;1,l,r);
+    if(r&gt;mid&amp;&amp;Tree[p&lt;&lt;1|1].maxn&gt;1) underModify(p&lt;&lt;1|1,l,r);
+    Tree[p].dat=Tree[p&lt;&lt;1].dat+Tree[p&lt;&lt;1|1].dat;
+    Tree[p].maxn=underMax(Tree[p&lt;&lt;1].maxn,Tree[p&lt;&lt;1|1].maxn);
+}
+inline LL underQuery(int p,int l,int r)
+{
+    if(Tree[p].l&gt;=l&amp;&amp;Tree[p].r&lt;=r) return Tree[p].dat;
+    int mid=(Tree[p].l+Tree[p].r)&gt;&gt;1;
+    LL val=0;
+    if(l&lt;=mid) val+=underQuery(p&lt;&lt;1,l,r);
+    if(r&gt;mid) val+=underQuery(p&lt;&lt;1|1,l,r);
+    return val;
+}
+int Test;
+int main()
+{
+    // freopen(&quot;sp.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;sp.out&quot;,&quot;w&quot;,stdout);
+    while(scanf(&quot;%d&quot;,&amp;N)!=EOF)
+    {
+        printf(&quot;Case #%d:\n&quot;,++Test);
+        for(int i=1;i&lt;=N;++i) scanf(&quot;%lld&quot;,&amp;Val[i]);
+        underBuild(1,1,N);
+        scanf(&quot;%d&quot;,&amp;M);
+        for(int i=1;i&lt;=M;++i)
+        {
+            scanf(&quot;%d%d%d&quot;,&amp;op,&amp;x,&amp;y);
+            if(x&gt;y) underSwap(x,y);
+            if(op==0) underModify(1,x,y);
+            else printf(&quot;%lld\n&quot;,underQuery(1,x,y));
+        }
+        printf(&quot;\n&quot;);
+    }
+    return 0;
+}
+/*
+5
+1 2 3 4 5
+5
+1 2 4
+0 2 4
+1 2 4
+0 4 5
+1 1 5
+4
+10 10 10 10
+3
+1 1 4
+0 2 3
+1 1 4
+*/
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3166 数三角形]]></title>
         <id>https://violeteternal.github.io/post/ti-jie-p3166-shu-san-jiao-xing/</id>
@@ -1035,131 +1284,6 @@ int main()
 </code></pre>
 <p>头图来源：<br>
 <a href="https://space.bilibili.com/53456/?spm_id_from=333.999.0.0">Warma</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【题解】P1144 最短路计数]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p1144-zui-duan-lu-ji-shu/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p1144-zui-duan-lu-ji-shu/">
-        </link>
-        <updated>2022-01-25T10:27:03.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="题目链接">题目链接：</h3>
-<p><a href="https://www.luogu.com.cn/problem/P1144">最短路计数</a></p>
-<h3 id="题目概述解题思路">题目概述&amp;解题思路：</h3>
-<p>字面意思，不多做解释。求出所有的最短路个数，对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup><mo>+</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">10^6+3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>  取模。当然，如果起点到编号为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的点不连通当然数目就为0啦。</p>
-<p>对于简单的思路，那就是跑出最短路，再跑一遍遍历，看有多少种情况能够走到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 点，然后统计。但是这样是绝对会超时的</p>
-<p>对于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 的数据, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>≦</mo><mn>1000000</mn><mo separator="true">,</mo><mi>M</mi><mo>≦</mo><mn>2000000</mn></mrow><annotation encoding="application/x-tex">N ≦ 1000000,M ≦ 2000000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.01166em;vertical-align:-0.25583em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">≦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.01166em;vertical-align:-0.25583em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">≦</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> .所以我们应该选择 <s>SPFA</s> ，啊对，就是选择SPFA，<s>有些算法死了，它还活着</s>。</p>
-<p>我们可以用一个数组 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>n</mi><mi>s</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">AnsL</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mord mathdefault">L</span></span></span></span> 来存储从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 号点到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 号点的最短路个数，然后一边跑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>P</mi><mi>F</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">SPFA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault">A</span></span></span></span> 一边修改 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>n</mi><mi>s</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">AnsL</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mord mathdefault">L</span></span></span></span> 的值，即当我们当前从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 点跑到了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 点的话费与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>i</mi><mi>s</mi><msub><mi>t</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">Dist_v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的值相同时，那么现在是一条目前找到的最短路（之后可能会存在更短路），那么就有：</p>
-<blockquote>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>n</mi><msub><mi>s</mi><mi>v</mi></msub><mo>=</mo><mi>A</mi><mi>n</mi><msub><mi>s</mi><mi>u</mi></msub><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">Ans_v=Ans_u+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></p>
-</blockquote>
-<p>的推导公式。</p>
-<p>而如果我们找到了更短路，那就把当前点的计数清零。从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">u</span></span></span></span> 点出发到的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 点的路即是最短路（目前），则传递答案为：</p>
-<pre><code class="language-cpp">Dist[v]=Dist[u]+1;
-Ans[v]=AnsL[v]=Ans[u];
-</code></pre>
-<p>这就是两种传递的方式，也就是本题最关键的代码核心。</p>
-<p>其他的注意事项则在代码里体现：</p>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cmath&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;algorithm&gt;
-#include&lt;ctime&gt;
-#include&lt;iomanip&gt;
-#include&lt;queue&gt;
-#include&lt;stack&gt;
-#include&lt;map&gt;
-using namespace std;
-using std::cin;
-using std::cout;
-int N,M,x,y,Cnt;
-int Dis[1000001];
-bool Vis[1000001];
-int Ans[1000001];
-int AnsL[1000001];
-int First[1000001];
-struct Node
-{
-	int To,Next;
-}Edge[2000001];
-inline void SPFA(int x)
-{
-	Dis[x]=0;
-	Vis[x]=1;
-	queue&lt;int&gt;Q;
-	Q.push(x);
-	while(!Q.empty())
-	{
-		int u=Q.front();
-		for(int e=First[u];e;e=Edge[e].Next)
-		{
-			int Now=Edge[e].To;
-			if(Dis[Now]&gt;Dis[u]+1)
-			{
-				Dis[Now]=Dis[u]+1;
-				Ans[Now]=AnsL[Now]=Ans[u]%100003;
-				if(!Vis[Now])
-				{
-					Vis[Now]=1;
-					Q.push(Now);
-				}
-			}
-			else if(Dis[Now]==Dis[u]+1)
-			{
-				AnsL[Now]=(AnsL[Now]+Ans[u])%100003;
-				Ans[Now]=(Ans[Now]+Ans[u])%100003;
-				if(!Vis[Now])
-				{
-					Vis[Now]=1;
-					Q.push(Now);
-				}
-			}
-		}
-		Ans[u]=0;
-		Q.pop();
-		Vis[u]=0;
-	}
-}
-int main()
-{
-//	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);
-//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);
-	scanf(&quot;%d%d&quot;,&amp;N,&amp;M);
-	for(int i=1;i&lt;=M;++i)
-	{
-		scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
-		Edge[++Cnt].To=y;
-		Edge[Cnt].Next=First[x];
-		First[x]=Cnt;
-		Edge[++Cnt].To=x;
-		Edge[Cnt].Next=First[y];
-		First[y]=Cnt;
-	}
-	AnsL[1]=Ans[1]=1;
-	for(int i=1;i&lt;=N;++i)
-	{
-		Dis[i]=0x7f7f7f7f;
-	}
-	SPFA(1);
-	for(int i=1;i&lt;=N;++i)
-	{
-		printf(&quot;%d\n&quot;,AnsL[i]);
-	}
-	return 0;
-}
-/*
-5 7
-1 2
-1 3
-2 4
-3 4
-2 3
-4 5
-4 5
-*/
-</code></pre>
 ]]></content>
     </entry>
 </feed>
