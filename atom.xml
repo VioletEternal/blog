@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-11T01:16:15.196Z</updated>
+    <updated>2022-02-11T01:51:37.870Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,103 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】P4035 球形空间产生器]]></title>
+        <id>https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/</id>
+        <link href="https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/">
+        </link>
+        <updated>2022-02-11T01:49:31.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4035">题目传送门</a></p>
+<p>高斯消元。</p>
+<h2 id="ac-code">AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int MAXN=101;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+int n;
+double a[MAXN][MAXN],b[MAXN][MAXN];
+inline double underFabs(double a)
+{
+    return fabs(a);
+}
+inline void underSwap(double &amp;a,double &amp;b)
+{
+    swap(a,b);
+}
+inline void underGauss()
+{
+    for(int r=1,c=1;c&lt;=n;++c,++r)
+    {
+        //find main
+        int t=r;
+        for(int i=r+1;i&lt;=n;++i) if(underFabs(b[i][c])&gt;underFabs(b[t][c])) t=i;
+        //swap main
+        for(int i=c;i&lt;=n+1;++i) underSwap(b[t][i],b[r][i]);
+        //as one
+        for(int i=n+1;i&gt;=c;--i) b[r][i]/=b[r][c];
+        //down
+        for(int i=r+1;i&lt;=n;++i)
+            for(int j=n+1;j&gt;=c;--j)
+                b[i][j]-=b[i][c]*b[r][j];
+    }
+    //turn into diagonal matrix
+    for(int i=n;i&gt;1;--i)
+        for(int j=i-1;j;--j)
+        {
+            b[j][n+1]-=b[i][n+1]*b[j][i];
+            b[j][i]=0;
+        }
+}
+int main()
+{
+    // freopen(&quot;jsoi2008.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;jsoi2008.out&quot;,&quot;w&quot;,stdout);
+    underRead(n);
+    for(int i=0;i&lt;=n;++i)
+        for(int j=1;j&lt;=n;++j)
+            scanf(&quot;%lf&quot;,&amp;a[i][j]);
+    for(int i=1;i&lt;=n;++i)
+        for(int j=1;j&lt;=n;++j)
+        {
+            b[i][j]+=2*(a[i][j]-a[0][j]);
+            b[i][n+1]+=a[i][j]*a[i][j]-a[0][j]*a[0][j];
+        }
+    underGauss();
+    for(int i=1;i&lt;=n;++i) printf(&quot;%.3lf &quot;,b[i][n+1]);
+    return 0;
+}
+/*
+2
+0.0 0.0
+-1.0 1.0
+1.0 0.0
+*/
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3200 有趣的数列]]></title>
         <id>https://violeteternal.github.io/post/ti-jie-p3200-you-qu-de-shu-lie/</id>
@@ -944,158 +1041,6 @@ int main()
 <p><a href="https://www.cnblogs.com/IzayoiMiku/p/13635809.html">IzayoiMiku</a></p>
 <p><a href="https://blog.csdn.net/weixin_44289697/article/details/105125613">XinyueRao</a></p>
 <p><a href="https://www.acwing.com/file_system/file/content/whole/index/content/406072/">AcWing</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【题解】P1462 通往奥格瑞玛的道路]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p1462-tong-wang-ao-ge-rui-ma-de-dao-lu/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p1462-tong-wang-ao-ge-rui-ma-de-dao-lu/">
-        </link>
-        <updated>2022-02-05T04:53:27.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="题目链接">题目链接：</h2>
-<p><a href="https://www.luogu.com.cn/problem/P1462">传送门</a></p>
-<h2 id="题解大意">题解大意：</h2>
-<p>对于一道有着两个限制条件（即血量与金钱）的图论搜索题，<s>首选BFS</s></p>
-<p>开玩笑的啦，BFS这道题铁定会超，无论空间还是时间。</p>
-<p><strong>二分</strong>价格，看在血量够的情况下是否能到达终点。</p>
-<p>时间复杂度：</p>
-<p>二分： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(log10^9)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br>
-SPFA： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>k</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(kn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
-<p>稳稳地不会超</p>
-<h2 id="ac-code">AC Code:</h2>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cmath&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;algorithm&gt;
-#include&lt;ctime&gt;
-#include&lt;iomanip&gt;
-#include&lt;queue&gt;
-#include&lt;stack&gt;
-#include&lt;map&gt;
-using namespace std;
-using std::cin;
-using std::cout;
-const int MaxN=100001;
-const int MaxM=500001;
-long long N,M,B,a,b,c,l=1,r,Ans;
-bool Vis[MaxN],V[MaxN];
-queue&lt;long long&gt;Q;
-long long CostBlood[MaxN],Dis[MaxN];
-long long Next[MaxM],To[MaxM],Cost[MaxM],Head[MaxN],Edge[MaxM],Num;
-inline long long underMax(long long a,long long b)
-{
-	return (a&gt;b?a:b);
-}
-inline void underAdd(long long a,long long b,long long c)
-{
-	To[++Num]=b;
-	Next[Num]=Head[a];
-	Head[a]=Num;
-	Edge[Num]=c;
-}
-inline bool underSPFA()
-{
-	memset(Dis,0x7f7f,sizeof(Dis));
-	Q.push(1);
-	V[1]=1;
-	Dis[1]=0;
-	while(!Q.empty())
-	{
-		int u=Q.front();Q.pop();
-		V[u]=0;
-		for(int i=Head[u];i;i=Next[i])
-		{
-			long long nx=To[i];
-			if(Vis[nx])
-			{
-				continue;
-			}
-			if(Dis[nx]&gt;Dis[u]+Edge[i])
-			{
-				Dis[nx]=Dis[u]+Edge[i];
-				if(!V[nx])
-				{
-					Q.push(nx),V[nx]=1;
-				}
-			}
-		}
-	}
-	if(Dis[N]&lt;B)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
-}
-inline bool underCheck(int x)
-{
-	memset(Vis,0,sizeof(Vis));
-	for(int i=1;i&lt;=N;++i)
-	{
-		if(Cost[i]&gt;x)
-		{
-			Vis[i]=1;
-		}
-	}
-	if(Vis[1]&amp;&amp;Vis[N])
-	{
-		return 0;
-	}
-	return underSPFA();
-}
-int main()
-{
-//	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);
-//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);
-	scanf(&quot;%lld%lld%lld&quot;,&amp;N,&amp;M,&amp;B);
-	for(int i=1;i&lt;=N;++i)
-	{
-		scanf(&quot;%lld&quot;,&amp;Cost[i]);
-		r=underMax(r,Cost[i]);
-	}
-	for(int i=1;i&lt;=M;++i)
-	{
-		scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c);
-		underAdd(a,b,c);
-		underAdd(b,a,c);
-	}
-	while(l&lt;=r)
-	{
-		int Mid=(l+r)/2;
-		if(underCheck(Mid))
-		{
-			Ans=Mid;
-			r=Mid-1;
-		}
-		else
-		{
-			l=Mid+1;
-		}
-	}
-	if(!Ans)
-	{
-		printf(&quot;AFK&quot;);
-		return 0;
-	}
-	printf(&quot;%lld&quot;,Ans);
-	return 0;
-}
-/*
-4 4 8
-8
-5
-6
-10
-2 1 2
-2 4 1
-1 3 4
-3 4 3
-*/
-</code></pre>
 ]]></content>
     </entry>
 </feed>
