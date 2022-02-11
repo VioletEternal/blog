@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
-    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
-    <title>EternalTimeLine</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+<link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
+<link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<title>EternalTimeLine</title>
 
 
 <body>
+
     <div id="content">
         <div class="nav-large">
             <div class="row">
@@ -924,7 +923,7 @@ menulist.eq(i).show();
 
 </div>
                 <!--------------- pc端菜单栏👆 ---------------->
-               
+
                 <!----------- 移动端导航栏👇 ----------------->
                 <div class="tbar"> <head>
   <!-- 引入Bootstrap核心样式文件 -->
@@ -1063,92 +1062,225 @@ menulist.eq(i).show();
 
                 <!-- ----------------左侧菜单栏html 👇-------------------------------------->
                 
-                <div id="tab1" class="tab">
-                    <div class="bars">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="close"></div>
-                </div>
-                <div class="col-md-1 col-lg-3"></div>
-                    <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                        <div class="mobilebar">
-                            <img src="" alt="" class="plbg">
-<script>
-    var bgchoice = "link";
-    if(bgchoice=='default')
-        var plbgurl = "\media\images\custom-mobileplbgimage.jpg"
-    else  
-        var plbgurl = ""
-    $(".plbg").attr("src",plbgurl);
-    $(".plbg").fadeIn(200);
-</script>
+                <div>
+                    <div id="tab1" class="tab">
+                        <div class="bars">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                        <script>
-                            $(".tag").each(function () {
-                                var rgb = '#' + Math.floor((Math.random()) * 0xffffff).toString(16);;
-                                $(this).css('color', rgb);
-                            });
-                        </script>
-                        <div class="tagsbackgroundleft"></div>
-                        <div class="tags-container">
-                            
-                            <img class="tagsimg" src="" alt="">
-                            
+                        <div class="close"></div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                            <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
+
+    <div style="display: none;">
+        
+            
+                <span name="plfeature">https://www.imageoss.com/images/2022/02/10/-70f225d69a068c5f00.jpg</span>
+                
+            <span name="pltitle">【题解】P3200 有趣的数列</span>
+            <span name="pllink">https://violeteternal.github.io/post/ti-jie-p3200-you-qu-de-shu-lie/</span>
+            <span name="pldate">2022-02-11</span>
+            <span name="plstats">3 min read</span>
+            
+                <span name="pltag" alt="【题解】P3200 有趣的数列">卡特兰数，Catalan</span>
+                <span name="pltaglink" alt="【题解】P3200 有趣的数列">https://violeteternal.github.io/tag/Y6TEZLoUU/</span>
+            
+                <span name="pltag" alt="【题解】P3200 有趣的数列">组合数学</span>
+                <span name="pltaglink" alt="【题解】P3200 有趣的数列">https://violeteternal.github.io/tag/D1-6N0cVL/</span>
+            
+                <span name="pltag" alt="【题解】P3200 有趣的数列">题解</span>
+                <span name="pltaglink" alt="【题解】P3200 有趣的数列">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
+            
+                <span name="pltag" alt="【题解】P3200 有趣的数列">数论</span>
+                <span name="pltaglink" alt="【题解】P3200 有趣的数列">https://violeteternal.github.io/tag/4wPDury-9s/</span>
+            
+        
+    </div>
+
+    
+    <div id="post-container" class="eleg-allpostscontainer">
+        <div v-for="post in postinfo" class="eleg-posts">
+            <div v-if="post.elegcontainer=='eleg-postcontainer-left'">
+                    <div :class="post.elegcontainer">
+                        <img :src="post.feature" alt="" :class="post.imgclass">
                         
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/Y6TEZLoUU/"># 卡特兰数，Catalan</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/D1-6N0cVL/"># 组合数学</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/YhO8AhuQLs/"># 题解</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/4wPDury-9s/"># 数论</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/A2vcczEeQ/"># 微积分</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/8sx7ey24nm/"># 学习笔记</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/aP03m10r43/"># 图论</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/GmGwxXTN6q/"># 线段树</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/7IdwW0bZW/"># 分析法</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/wL9E2rvrx/"># DP</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/ZAha7AFg_/"># 矩阵快速幂，矩阵乘法</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/enS9F_cM9/"># SPFA</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/PzFA5IeKS/"># 最短路</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/XARamDjje/"># Floyd</a>
-                            
-                            <a data-pjax class="tag" href="https://violeteternal.github.io/tag/opjZsi3dKi/"># Dijkstra</a>
-                            
+                        <div class="eleg-info">
+                            <span class="eleg-title">{{post.title}}</span>
+                            <div style="margin-top:15px;">
+                                <span class="postdate eleg-date"><i class="fa fa-calendar"></i>{{post.date}}</span>
+                                <span class="poststatus postdate eleg-stats"><i class="fa fa-clock-o"></i> {{post.stats}}</span>
+                            </div>
+                            <div style="margin-top:50px">
+                                <a :href="post.link" class="eleg-btn" data-pjax>阅读全文</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-2"></div>
-                    <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+                    <div class='eleg-tags'>
+                        <div v-for="tag in post.tags">
+                            <div class="posttag">
+                                <a data-pjax href="" class="postlink eleg-postlink">
+                                    <i class="fa fa-tag"></i>{{tag}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div v-else>
+                    <div :class="post.elegcontainer">
+                        <div class="eleg-info">
+                            <span class="eleg-title">{{post.title}}</span>
+                            <div style="margin-top:15px;">
+                                <span class="postdate eleg-date"><i class="fa fa-calendar"></i>{{post.date}}</span>
+                                <span class="poststatus postdate eleg-stats"><i class="fa fa-clock-o"></i> {{post.stats}}</span>
+                            </div>
+                            <div style="margin-top:50px">
+                                <a :href="post.link" class="eleg-btn" data-pjax>阅读全文</a>
+                            </div>
+                        </div>
+                        
+                        <img :src="post.feature" alt="" :class="post.imgclass">
+                    </div>
+                    <div class='eleg-tags'>
+                        <div v-for="tag in post.tags">
+                            <div class="posttag">
+                                <a data-pjax href="" class="postlink eleg-postlink">
+                                    <i class="fa fa-tag"></i>{{tag}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+    var app2 = new Vue({
+      el: '#post-container',
+      mounted:function(){
+        this.getpostInfo();
+      },
+      methods:{
+         getpostInfo:function(){
+             var plflist = $("span[name='plfeature']");
+             var pltlist = $("span[name='pltitle']");
+             var plllist = $("span[name='pllink']");
+             var pldlist = $("span[name='pldate']");
+             var plslist = $("span[name='plstats']");
+             var pltaglist = $("span[name='pltag']");
+             for(var i=0;i<this.pagesize&&i<plflist.length;i++){
+                 var d = {};
+                 var tags = []
+                 d["feature"] = plflist.eq(i).html();
+                 d["title"] = pltlist.eq(i).html();
+                 d["link"] = plllist.eq(i).html();
+                 d["date"] = pldlist.eq(i).html();
+                 d['stats'] = plslist.eq(i).html();
+                 for(var j=0;j<pltaglist.length;j++){
+                     if(pltaglist.eq(j).attr('alt')==d['title'])
+                        tags.push(pltaglist.eq(j).html())
+                 }
+                 d["tags"] = tags;
+                 if(i%2==0)
+                 {
+                     d['elegcontainer'] = 'eleg-postcontainer-left';
+                     d['imgclass'] = 'eleg-img-left'
+                 }
+                 else{
+                    d['elegcontainer'] = 'eleg-postcontainer-right';
+                    d['imgclass'] = 'eleg-img-right' 
+                 }
+                 this.postinfo.push(d);
+             }
+         }
+      },
+      data: {
+        pagesize: "10",
+        postinfo:[],
+      }
+    })
+    </script>
+
+                            <div>
+                                <div class="pcpagi">
+    <div class="pagi">
+        <ul>
+            
+            <li><a style="width:100px">&nbsp;</a></li>
+            
+                    <li><a id="page1">1</a></li>
+                    <li><a id="page2" class="active">2</a></li>
+                    <li><a id="page3">3</a></li>
                     
-                    <!------------------ 顶部菜单栏html👇--------->
-                    
-                <!--------------- ---顶部菜单栏html👆--------->
-                <div class="col-xs-6 col-sm-3"></div>
+            <li><a style="width:100px">&nbsp;</a></li>
+            
+                </ul>
+    </div>
+</div>
+
+<div id="pagination-prev" style="display:none"> 
+</div>
+<div id="pagination-next" style="display:none"> </div>
+
+<div class="pagination-container">
+      
+    
+</div>
+
+<script>
+    var prevstr = document.getElementById("pagination-prev").innerHTML;
+    var nextstr = document.getElementById("pagination-next").innerHTML;
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var page3 = document.getElementById("page3");
+    page1.innerHTML = '-';
+    page2.innerHTML = '1';
+    page3.innerHTML = '-';
+    if (prevstr.length > 5) {
+        if (prevstr.indexOf("page/") != -1) {
+            var prevnum = parseInt(prevstr.split("page/")[1]);
+            page1.innerHTML = prevnum;
+            page2.innerHTML = prevnum + 1;
+        } else {
+            page1.innerHTML = 1;
+            page2.innerHTML = 2;
+        }
+    }
+    if (nextstr.indexOf("page/") != -1) {
+        var nextnum = parseInt(nextstr.split("page/")[1]);
+        page3.innerHTML = nextnum;
+        page2.innerHTML = nextnum - 1;
+    }
+</script>
+                                <div style="padding-bottom:10%"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                </div>
+                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+                
+                <!------------------ 顶部菜单栏html👇--------->
+                
+                <!------------------ 顶部菜单栏html👆--------->
             </div>
             
-        </div></div>
+        </div>
         <div id="bg">
         </div>
-        <!-- 背景图加载方式👇 -->
+        <!------- 背景图加载方式👇----- -->
         <div id="bgchoice" style="display: none">link
                     </div>
                     
                     <div id="bgurl" style="display:none">https://www.imageoss.com/images/2022/01/26/DIGIT-FAULTdeep-space-894aceafabd5079a.jpg</div>
                        
         </div>
-        <!-- 背景图加载方式👆 -->
+        <!------- 背景图加载方式👆 --------------->
+</div>
+</div>
+
         <div id="landlord">
             <div class="message" style="opacity:0"></div>
             <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
@@ -1156,17 +1288,7 @@ menulist.eq(i).show();
         <div id="domainname" style="display:none">https://violeteternal.github.io
                 </div>
 </body>
-
 </html>
-<!-- 标签框随机色彩功能👇 -->
-<script>
-    $(".tag").each(function () {
-        var rgb = '#' + Math.floor((Math.random()) * 0xffffff).toString(16);;
-        $(this).css('color', rgb);
-    });
-</script>
-<!-- 标签框随机色彩功能👆 -->
-
 <!-------------------- live2d功能👇 --------------------------->
 
 <script type="text/javascript">
@@ -1179,7 +1301,7 @@ menulist.eq(i).show();
     loadlive2d("live2d", "https://violeteternal.github.io/media/live2d/assets/tororo.model.json");
 </script>
 
-<!-------------------- live2d功能👆 --------------------------->
+<!-------------------- live2d功能👆--------------------------->
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1199,5 +1321,6 @@ menulist.eq(i).show();
     }
 </script>
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
+
 
 <script src="https://violeteternal.github.io/media/js/index.js"></script>
