@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-<link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
-<link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-<title>EternalTimeLine</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+    <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
+    <script src="https://violeteternal.github.io/media/js/valine.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <meta name="description" content="Eternaltale的OI平行世界" />
+    <meta http-equiv="x-pjax-version" content="v123">
+    <title>EternalTimeLine</title>
+</head>
 
 
 <body>
-
     <div id="content">
         <div class="nav-large">
             <div class="row">
+                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
+                
                 <!--------------- pc端菜单栏👇 ---------------->
                 <div class="side"><head>
     <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
@@ -951,9 +956,17 @@ menulist.eq(i).show();
 
 </div>
                 <!--------------- pc端菜单栏👆 ---------------->
-
+                <div id="tab1" class="tab">
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="close"></div>
+                </div>
+                <div class="col-md-1 col-lg-3"></div>
                 <!----------- 移动端导航栏👇 ----------------->
-                <div class="tbar"> <head>
+                <div class="mobilebar"><head>
   <!-- 引入Bootstrap核心样式文件 -->
   <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
 </head>
@@ -1085,108 +1098,120 @@ menulist.eq(i).show();
         btstate = false;
       }
     }
-  </script> </div>
+  </script> 
                 <!----------- 移动端导航栏👆 ----------------->
+                </div>
+                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                    <!-- 移动端 -->
+                    <div class="mobilebar">
+                        <!-- 移动端欢迎页 -->
+<div class="welcome">
+    <div class="avatar-border">
+        <img src="https://violeteternal.github.io/images/avatar.png?v=1644587919716" class="avatar">
+    </div>
+    <span class="mobiledescribtion"></span>
+</div>
 
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
-                <div>
-                    <div id="tab1" class="tab">
-                        <div class="bars">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="close"></div>
+
+    <div id="mobilebgurl" style="display:none"></div>
+
+<script>
+    var welcome = $('.welcome');
+    var bgurl = document.getElementById("mobilebgurl").innerHTML;
+    for (var i = 0; i < 3; i++)
+        bgurl = bgurl.replace("\\", "/");
+    welcome.css("background", "url('" + bgurl + "')");
+    var mobiledes = document.querySelector(".mobiledescribtion");
+    var text = "Eternaltale的OI平行世界";
+    // 当前显示第几个字
+    var mobilecharIndex = 1;
+    // 每个字显示间隔默认是500毫秒
+    var mobiledelta = 500;
+
+    // 记录动画执行开始时间
+    var mobilestart = null;
+    // 是否为删除动画
+    var mobileisDeleting = false;
+
+    // 动画回调函数
+    function mobileLoadDes(time) {
+        window.requestAnimationFrame(mobileLoadDes);
+        // 初始化开始时间
+        if (!mobilestart) start = time;
+        // 获取时间间隔
+        var mobileprogress = time - mobilestart;
+        // 每隔一定的时间，打印出一个新的字符
+        if (mobileprogress > mobiledelta) {
+            // 如果是打字效果
+            if (!mobileisDeleting) {
+                // 给展示文字的span新增一个字符，使用innerHTML来替换，charIndex自增1，然后返回新的字符串子串
+                mobiledes.innerHTML = "&nbsp;" + text.slice(
+                    0,
+                    ++mobilecharIndex
+                );
+                mobiledelta = 500 - Math.random() * 400;
+            } else {
+                // 如果是删除效果，则把文字一个一个减掉
+                mobiledes.innerHTML = "&nbsp;" + text.slice(
+                    0,
+                    mobilecharIndex--
+                );
+            }
+            // 把star更新为当前时间，进行下一个周期
+            mobilestart = time;
+
+            // 如果文字已经全部打印完毕
+            if (mobilecharIndex === text.length) {
+                // 下次开始删除文字
+                mobileisDeleting = true;
+                // 删除文字的间隔为200毫秒
+                mobiledelta = 100;
+                // 额外等待1.2秒后再删除
+                mobilestart = time + 1000;
+            }
+
+            // 如果文字删除完毕
+            if (mobilecharIndex < 0) {
+                mobileisDeleting = false;
+                // 额外增加200毫秒延迟
+                mobilestart = time + 200;
+            }
+        }
+    }
+
+    window.requestAnimationFrame(mobileLoadDes);
+</script>
+                        <img src="" alt="" class="plbg">
+<script>
+    var bgchoice = "link";
+    if(bgchoice=='default')
+        var plbgurl = "\media\images\custom-mobileplbgimage.jpg"
+    else  
+        var plbgurl = ""
+    $(".plbg").attr("src",plbgurl);
+    $(".plbg").fadeIn(200);
+</script>
                     </div>
-                    <div class="col-lg-3"></div>
-                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                            <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
+                    <div style="display:none">
+</div>
+                    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
+
 
     <div style="display: none;">
         
             
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/-372585092f70c68aa66.jpg</span>
+                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/Warma-42b9b055c1bd4989f.png</span>
                 
-            <span name="pltitle">【题解】P1462 通往奥格瑞玛的道路</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-p1462-tong-wang-ao-ge-rui-ma-de-dao-lu/</span>
-            <span name="pldate">2022-02-05</span>
-            <span name="plstats">3 min read</span>
-            
-                <span name="pltag" alt="【题解】P1462 通往奥格瑞玛的道路">SPFA</span>
-                <span name="pltaglink" alt="【题解】P1462 通往奥格瑞玛的道路">https://violeteternal.github.io/tag/enS9F_cM9/</span>
-            
-                <span name="pltag" alt="【题解】P1462 通往奥格瑞玛的道路">最短路</span>
-                <span name="pltaglink" alt="【题解】P1462 通往奥格瑞玛的道路">https://violeteternal.github.io/tag/PzFA5IeKS/</span>
-            
-                <span name="pltag" alt="【题解】P1462 通往奥格瑞玛的道路">图论</span>
-                <span name="pltaglink" alt="【题解】P1462 通往奥格瑞玛的道路">https://violeteternal.github.io/tag/aP03m10r43/</span>
-            
-                <span name="pltag" alt="【题解】P1462 通往奥格瑞玛的道路">题解</span>
-                <span name="pltaglink" alt="【题解】P1462 通往奥格瑞玛的道路">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-        
-            
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/Warma-Boom-85f63e961c268ff92.jpg</span>
-                
-            <span name="pltitle">【题解】NOIP2022.01.26模拟赛</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-noip20220126-mo-ni-sai/</span>
-            <span name="pldate">2022-01-26</span>
-            <span name="plstats">8 min read</span>
-            
-                <span name="pltag" alt="【题解】NOIP2022.01.26模拟赛">题解</span>
-                <span name="pltaglink" alt="【题解】NOIP2022.01.26模拟赛">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-                <span name="pltag" alt="【题解】NOIP2022.01.26模拟赛">数论</span>
-                <span name="pltaglink" alt="【题解】NOIP2022.01.26模拟赛">https://violeteternal.github.io/tag/4wPDury-9s/</span>
-            
-        
-            
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/25/-33798fa2d36eed2f3a5.jpg</span>
-                
-            <span name="pltitle">【题解】P1144 最短路计数</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-p1144-zui-duan-lu-ji-shu/</span>
+            <span name="pltitle">【学习笔记】线段树</span>
+            <span name="pllink">https://violeteternal.github.io/post/xue-xi-bi-ji-xian-duan-shu/</span>
             <span name="pldate">2022-01-25</span>
-            <span name="plstats">4 min read</span>
+            <span name="plstats">6 min read</span>
             
-                <span name="pltag" alt="【题解】P1144 最短路计数">SPFA</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/enS9F_cM9/</span>
+                <span name="pltag" alt="【学习笔记】线段树">学习笔记</span>
+                <span name="pltaglink" alt="【学习笔记】线段树">https://violeteternal.github.io/tag/8sx7ey24nm/</span>
             
-                <span name="pltag" alt="【题解】P1144 最短路计数">最短路</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/PzFA5IeKS/</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">图论</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/aP03m10r43/</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">题解</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-        
-            
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/-367c42c699af0bd2759.jpg</span>
-                
-            <span name="pltitle">【题解】UVA318 Domino Effect</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-uva318-domino-effect/</span>
-            <span name="pldate">2022-01-25</span>
-            <span name="plstats">10 min read</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">Floyd</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/XARamDjje/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">Dijkstra</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/opjZsi3dKi/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">SPFA</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/enS9F_cM9/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">最短路</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/PzFA5IeKS/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">图论</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/aP03m10r43/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">题解</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
+                <span name="pltag" alt="【学习笔记】线段树">线段树</span>
+                <span name="pltaglink" alt="【学习笔记】线段树">https://violeteternal.github.io/tag/GmGwxXTN6q/</span>
             
         
     </div>
@@ -1210,9 +1235,9 @@ menulist.eq(i).show();
                         </div>
                     </div>
                     <div class='eleg-tags'>
-                        <div v-for="tag in post.tags">
+                        <div v-for="(tag,i) in post.tags">
                             <div class="posttag">
-                                <a data-pjax href="" class="postlink eleg-postlink">
+                                <a data-pjax :href="post.taglink[i]" class="postlink eleg-postlink">
                                     <i class="fa fa-tag"></i>{{tag}}
                                 </a>
                             </div>
@@ -1235,9 +1260,9 @@ menulist.eq(i).show();
                         <img :src="post.feature" alt="" :class="post.imgclass">
                     </div>
                     <div class='eleg-tags'>
-                        <div v-for="tag in post.tags">
+                        <div v-for="(tag,i) in post.tags">
                             <div class="posttag">
-                                <a data-pjax href="" class="postlink eleg-postlink">
+                                <a data-pjax :href="post.taglink[i]" class="postlink eleg-postlink">
                                     <i class="fa fa-tag"></i>{{tag}}
                                 </a>
                             </div>
@@ -1262,9 +1287,11 @@ menulist.eq(i).show();
              var pldlist = $("span[name='pldate']");
              var plslist = $("span[name='plstats']");
              var pltaglist = $("span[name='pltag']");
+             var pltaglinklist = $("span[name='pltaglink']")
              for(var i=0;i<this.pagesize&&i<plflist.length;i++){
                  var d = {};
                  var tags = []
+                 var taglink = []
                  d["feature"] = plflist.eq(i).html();
                  d["title"] = pltlist.eq(i).html();
                  d["link"] = plllist.eq(i).html();
@@ -1275,6 +1302,11 @@ menulist.eq(i).show();
                         tags.push(pltaglist.eq(j).html())
                  }
                  d["tags"] = tags;
+                 for(var j=0;j<pltaglinklist.length;j++){
+                    if(pltaglinklist.eq(j).attr('alt')==d['title'])
+                        taglink.push(pltaglinklist.eq(j).html())
+                 }
+                 d["taglink"] = taglink
                  if(i%2==0)
                  {
                      d['elegcontainer'] = 'eleg-postcontainer-left';
@@ -1295,12 +1327,13 @@ menulist.eq(i).show();
     })
     </script>
 
-                            <div>
-                                <div class="pcpagi">
+
+                    <div>
+                        <div class="pcpagi">
     <div class="pagi">
         <ul>
             
-            <li><a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs" style="width:100px" id="prev">上一页</a></li>
+            <li><a data-pjax href="https://violeteternal.github.io/page/2/" style="width:100px" id="prev">上一页</a></li>
             
                     <li><a id="page1">1</a></li>
                     <li><a id="page2" class="active">2</a></li>
@@ -1312,13 +1345,13 @@ menulist.eq(i).show();
     </div>
 </div>
 
-<div id="pagination-prev" style="display:none"> https://violeteternal.github.io/tag/YhO8AhuQLs
+<div id="pagination-prev" style="display:none"> https://violeteternal.github.io/page/2/
 </div>
 <div id="pagination-next" style="display:none"> </div>
 
 <div class="pagination-container">
     
-    <a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs" class="mobile-prevpage">上一页</a>
+    <a data-pjax href="https://violeteternal.github.io/page/2/" class="mobile-prevpage">上一页</a>
       
     
 </div>
@@ -1348,53 +1381,47 @@ menulist.eq(i).show();
         page2.innerHTML = nextnum - 1;
     }
 </script>
-                                <div style="padding-bottom:10%"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2"></div>
+                    </div>
                 </div>
+                <div class="col-md-1 col-lg-2"></div>
+                
                 <!-- ----------------左侧菜单栏html 👆-------------------------------------->
-                
                 <!------------------ 顶部菜单栏html👇--------->
-                
+                 
                 <!------------------ 顶部菜单栏html👆--------->
+                </div>
+            </div>
+            <div id="bg">
+            </div>
+            <!------- 背景图加载方式👇----- -->
+            <div id="bgchoice" style="display: none">link
             </div>
             
-        </div>
-        <div id="bg">
-        </div>
-        <!------- 背景图加载方式👇----- -->
-        <div id="bgchoice" style="display: none">link
-                    </div>
-                    
-                    <div id="bgurl" style="display:none">https://www.imageoss.com/images/2022/01/26/DIGIT-FAULTdeep-space-894aceafabd5079a.jpg</div>
-                       
-        </div>
-        <!------- 背景图加载方式👆 --------------->
-</div>
-</div>
-
+            <div id="bgurl" style="display:none">https://www.imageoss.com/images/2022/01/26/DIGIT-FAULTdeep-space-894aceafabd5079a.jpg</div>
+            
+            <!------- 背景图加载方式👆----- --> 
         <div id="landlord">
             <div class="message" style="opacity:0"></div>
             <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
         </div>
-        <div id="domainname" style="display:none">https://violeteternal.github.io
-                </div>
-</body>
-</html>
+    </div>
+        
+    <div id="domainname" style="display:none">https://violeteternal.github.io
+        </div>
+
 <!-------------------- live2d功能👇 --------------------------->
-
-<script type="text/javascript">
-    var message_Path = '/live2d/'
-    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
-</script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/live2d.js"></script>
-<script type="text/javascript" src="https://violeteternal.github.io/media/live2d/js/message.js"></script>
-<script type="text/javascript">
-    loadlive2d("live2d", "https://violeteternal.github.io/media/live2d/assets/tororo.model.json");
-</script>
-
-<!-------------------- live2d功能👆--------------------------->
+    
+        <script type="text/javascript">
+            var message_Path = '/live2d/'
+            var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+        </script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/live2d.js"></script>
+        <script type="text/javascript" src="https://violeteternal.github.io/media/live2d/js/message.js"></script>
+        <script type="text/javascript">
+            loadlive2d("live2d", "https://violeteternal.github.io/media/live2d/assets/tororo.model.json");
+        </script>
+    
+<!-------------------- live2d功能👆 --------------------------->
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1415,5 +1442,9 @@ menulist.eq(i).show();
 </script>
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
-<script src="https://violeteternal.github.io/media/js/index.js"></script>
+        <script src="https://violeteternal.github.io/media/js/index.js"></script>
+        
+</body>
+</html>
