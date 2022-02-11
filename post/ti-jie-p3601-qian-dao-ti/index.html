@@ -1,23 +1,219 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-<link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
-<link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
-<link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-<title>EternalTimeLine</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="题目传送门
+思路
+qiandao(x)=x−ϕ(x)qiandao ( x ) = x- \phi (x)qiandao(x)=x−ϕ(x)
+线性筛出 r=106\sqrt{r} = 10^6r​=106 以内的质数，然后再 O(r−l)O..." />
+    <meta name="keywords" content="题解,数论" />
+    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
+    <!-- 代码渲染风格css -->
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/vs2015.min.css">
+    
+    <!-- 代码高亮插件 -->
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <!-- 代码复制插件 -->
+    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
+    <!-- live2d插件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css"
+        integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js"
+        integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js"
+        integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous">
+        </script>
+    <script>
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            },
+            {
+                left: "$",
+                right: "$",
+                display: false
+            }
+            ]
+        });
+    </script>
+    
+    <title>【题解】P3601 签到题</title>
 
+    <!-- 大纲索引css调整 -->
+    
+    <style>
+        .markdownIt-TOC {
+            margin-left: 28%;
+            padding-left: 2px;
+            width: 80%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 8%;
+        }
+    </style>
+    
+</head>
 
 <body>
-
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="domainname" style="display:none">https://violeteternal.github.io</div>
     <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                <!--------------- pc端菜单栏👇 ---------------->
-                <div class="side"><head>
+        <div>
+            <!----------- 移动端导航栏👇 ----------------->
+            <div id="bar">
+                <head>
+  <!-- 引入Bootstrap核心样式文件 -->
+  <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
+</head>
+<style>
+  .navmobile {
+    z-index: 15;
+    max-height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .navbar {
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width:1200px) and (min-width: 768px) {
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .mbapspan {
+      padding: 0;
+    }
+  }
+</style>
+<div class="pjaxloading"  onclick="pjaxloadingClose()">
+  <div class="loadingbackground"></div>
+  <div id="loading">
+    <div class="loading">
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
+        aria-expanded="false" id="barbutton">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a data-pjax class="navbar-brand" href="https://violeteternal.github.io">EternalTimeLine&nbsp;&nbsp;|</a>
+      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
+          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="barmenu">
+      <ul class="nav navbar-nav">
+        
+        
+        <li>
+          <a data-pjax href="/">
+            首页
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/archives">
+            归档
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/tags">
+            标签
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/post/about">
+            关于
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        <li><a data-pjax href="https://violeteternal.github.io/friends">友链</a></li>
+
+        
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  <script>
+    let btstate = false;
+    var bt = $("#barbutton");
+    var bm = $("#barmenu");
+    bt.click(function () {
+      dropdown();
+    })
+    function dropdown() {
+      console.log(btstate);
+      //下拉
+      if (btstate == false) {
+        bt.removeClass("collapsed");
+        bt.attr("aria-expanded", "true");
+        bm.attr("aria-expanded", "true")
+        bm.fadeIn(700);
+        btstate = true;
+      }
+      else {
+        bt.addClass("collapsed");
+        bt.attr("aria-expanded", "false");
+        bm.removeClass("in");
+        bm.hide();
+        bm.attr("aria-expanded", "false");
+        btstate = false;
+      }
+    }
+  </script> 
+            </div>
+            <!----------- 移动端导航栏👆 ----------------->
+
+            <!--------------- pc端菜单栏👇 ---------------->
+            <div class="side"><head>
     <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://violeteternal.github.io/styles/main.css">
     
@@ -936,418 +1132,287 @@ menulist.eq(i).show();
 
 
 </div>
-                <!--------------- pc端菜单栏👆 ---------------->
+            <!--------------- pc端菜单栏👆 ---------------->
 
-                <!----------- 移动端导航栏👇 ----------------->
-                <div class="tbar"> <head>
-  <!-- 引入Bootstrap核心样式文件 -->
-  <link rel="stylesheet" href="https://violeteternal.github.io/media/css/bootstrap.min.css">
-</head>
-<style>
-  .navmobile {
-    z-index: 15;
-    max-height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .navbar {
-      max-width: 100vw;
-    }
-  }
-
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .mbapspan {
-      padding: 0;
-    }
-  }
-</style>
-<div class="pjaxloading"  onclick="pjaxloadingClose()">
-  <div class="loadingbackground"></div>
-  <div id="loading">
-    <div class="loading">
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-        aria-expanded="false" id="barbutton">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a data-pjax class="navbar-brand" href="https://violeteternal.github.io">EternalTimeLine&nbsp;&nbsp;|</a>
-      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="barmenu">
-      <ul class="nav navbar-nav">
-        
-        
-        <li>
-          <a data-pjax href="/">
-            首页
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/archives">
-            归档
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/tags">
-            标签
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/post/about">
-            关于
-          </a>
-        </li>
-        
-        
-        
-        
-          
-        <li><a data-pjax href="https://violeteternal.github.io/friends">友链</a></li>
-
-        
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-    let btstate = false;
-    var bt = $("#barbutton");
-    var bm = $("#barmenu");
-    bt.click(function () {
-      dropdown();
-    })
-    function dropdown() {
-      console.log(btstate);
-      //下拉
-      if (btstate == false) {
-        bt.removeClass("collapsed");
-        bt.attr("aria-expanded", "true");
-        bm.attr("aria-expanded", "true")
-        bm.fadeIn(700);
-        btstate = true;
-      }
-      else {
-        bt.addClass("collapsed");
-        bt.attr("aria-expanded", "false");
-        bm.removeClass("in");
-        bm.hide();
-        bm.attr("aria-expanded", "false");
-        btstate = false;
-      }
-    }
-  </script> </div>
-                <!----------- 移动端导航栏👆 ----------------->
-
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
-                <div>
-                    <div id="tab1" class="tab">
-                        <div class="bars">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="close"></div>
+            <!-- ----------------左侧菜单栏html 👇-------------------------------------->
+            
+            <div>
+                <div id="tab1" class="tab">
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                    <div class="col-lg-3"></div>
-                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                            <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
+                    <div class="close"></div>
+                </div>
+                <div class="col-md-1 col-lg-3"></div>
+                <!-- main标签，pjax渲染时加载以下内容👇 -->
+                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="padding:0;">
+                    <link rel="stylesheet" href="https://violeteternal.github.io/media/css/font-awesome.css">
 
-    <div style="display: none;">
-        
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow postpadding" style="padding-bottom: 0;">
             
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/Warma-Boom-85f63e961c268ff92.jpg</span>
-                
-            <span name="pltitle">【题解】NOIP2022.01.26模拟赛</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-noip20220126-mo-ni-sai/</span>
-            <span name="pldate">2022-01-26</span>
-            <span name="plstats">8 min read</span>
-            
-                <span name="pltag" alt="【题解】NOIP2022.01.26模拟赛">题解</span>
-                <span name="pltaglink" alt="【题解】NOIP2022.01.26模拟赛">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-                <span name="pltag" alt="【题解】NOIP2022.01.26模拟赛">数论</span>
-                <span name="pltaglink" alt="【题解】NOIP2022.01.26模拟赛">https://violeteternal.github.io/tag/4wPDury-9s/</span>
-            
-        
-            
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/25/-33798fa2d36eed2f3a5.jpg</span>
-                
-            <span name="pltitle">【题解】P1144 最短路计数</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-p1144-zui-duan-lu-ji-shu/</span>
-            <span name="pldate">2022-01-25</span>
-            <span name="plstats">4 min read</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">SPFA</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/enS9F_cM9/</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">最短路</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/PzFA5IeKS/</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">图论</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/aP03m10r43/</span>
-            
-                <span name="pltag" alt="【题解】P1144 最短路计数">题解</span>
-                <span name="pltaglink" alt="【题解】P1144 最短路计数">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-        
-            
-                <span name="plfeature">https://www.imageoss.com/images/2021/12/31/-367c42c699af0bd2759.jpg</span>
-                
-            <span name="pltitle">【题解】UVA318 Domino Effect</span>
-            <span name="pllink">https://violeteternal.github.io/post/ti-jie-uva318-domino-effect/</span>
-            <span name="pldate">2022-01-25</span>
-            <span name="plstats">10 min read</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">Floyd</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/XARamDjje/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">Dijkstra</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/opjZsi3dKi/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">SPFA</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/enS9F_cM9/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">最短路</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/PzFA5IeKS/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">图论</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/aP03m10r43/</span>
-            
-                <span name="pltag" alt="【题解】UVA318 Domino Effect">题解</span>
-                <span name="pltaglink" alt="【题解】UVA318 Domino Effect">https://violeteternal.github.io/tag/YhO8AhuQLs/</span>
-            
-        
-    </div>
-
-    
-    <div id="post-container" class="eleg-allpostscontainer">
-        <div v-for="post in postinfo" class="eleg-posts">
-            <div v-if="post.elegcontainer=='eleg-postcontainer-left'">
-                    <div :class="post.elegcontainer">
-                        <img :src="post.feature" alt="" :class="post.imgclass">
-                        
-                        <div class="eleg-info">
-                            <span class="eleg-title">{{post.title}}</span>
-                            <div style="margin-top:15px;">
-                                <span class="postdate eleg-date"><i class="fa fa-calendar"></i>{{post.date}}</span>
-                                <span class="poststatus postdate eleg-stats"><i class="fa fa-clock-o"></i> {{post.stats}}</span>
-                            </div>
-                            <div style="margin-top:50px">
-                                <a :href="post.link" class="eleg-btn" data-pjax>阅读全文</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='eleg-tags'>
-                        <div v-for="tag in post.tags">
-                            <div class="posttag">
-                                <a data-pjax href="" class="postlink eleg-postlink">
-                                    <i class="fa fa-tag"></i>{{tag}}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="postdetailimg">
+                <img src="https://www.imageoss.com/images/2022/02/10/-66fd918ad4d8a7c7fc.jpg" class="postimage" style="cursor:auto">
             </div>
-            <div v-else>
-                    <div :class="post.elegcontainer">
-                        <div class="eleg-info">
-                            <span class="eleg-title">{{post.title}}</span>
-                            <div style="margin-top:15px;">
-                                <span class="postdate eleg-date"><i class="fa fa-calendar"></i>{{post.date}}</span>
-                                <span class="poststatus postdate eleg-stats"><i class="fa fa-clock-o"></i> {{post.stats}}</span>
-                            </div>
-                            <div style="margin-top:50px">
-                                <a :href="post.link" class="eleg-btn" data-pjax>阅读全文</a>
-                            </div>
-                        </div>
-                        
-                        <img :src="post.feature" alt="" :class="post.imgclass">
-                    </div>
-                    <div class='eleg-tags'>
-                        <div v-for="tag in post.tags">
-                            <div class="posttag">
-                                <a data-pjax href="" class="postlink eleg-postlink">
-                                    <i class="fa fa-tag"></i>{{tag}}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-
-    
-    <script>
-    var app2 = new Vue({
-      el: '#post-container',
-      mounted:function(){
-        this.getpostInfo();
-      },
-      methods:{
-         getpostInfo:function(){
-             var plflist = $("span[name='plfeature']");
-             var pltlist = $("span[name='pltitle']");
-             var plllist = $("span[name='pllink']");
-             var pldlist = $("span[name='pldate']");
-             var plslist = $("span[name='plstats']");
-             var pltaglist = $("span[name='pltag']");
-             for(var i=0;i<this.pagesize&&i<plflist.length;i++){
-                 var d = {};
-                 var tags = []
-                 d["feature"] = plflist.eq(i).html();
-                 d["title"] = pltlist.eq(i).html();
-                 d["link"] = plllist.eq(i).html();
-                 d["date"] = pldlist.eq(i).html();
-                 d['stats'] = plslist.eq(i).html();
-                 for(var j=0;j<pltaglist.length;j++){
-                     if(pltaglist.eq(j).attr('alt')==d['title'])
-                        tags.push(pltaglist.eq(j).html())
-                 }
-                 d["tags"] = tags;
-                 if(i%2==0)
-                 {
-                     d['elegcontainer'] = 'eleg-postcontainer-left';
-                     d['imgclass'] = 'eleg-img-left'
-                 }
-                 else{
-                    d['elegcontainer'] = 'eleg-postcontainer-right';
-                    d['imgclass'] = 'eleg-img-right' 
-                 }
-                 this.postinfo.push(d);
-             }
-         }
-      },
-      data: {
-        pagesize: "10",
-        postinfo:[],
-      }
-    })
-    </script>
-
-                            <div>
-                                <div class="pcpagi">
-    <div class="pagi">
-        <ul>
-            
-            <li><a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs" style="width:100px" id="prev">上一页</a></li>
-            
-                    <li><a id="page1">1</a></li>
-                    <li><a id="page2" class="active">2</a></li>
-                    <li><a id="page3">3</a></li>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2022-02-11</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 3 min read</div>
+                <div class="posttag">
                     
-            <li><a style="width:100px">&nbsp;</a></li>
+                    <a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs/" class="postlink">
+                        <i class="fa fa-tag"></i> 题解
+                    </a>
+                    
+                    <a data-pjax href="https://violeteternal.github.io/tag/4wPDury-9s/" class="postlink">
+                        <i class="fa fa-tag"></i> 数论
+                    </a>
+                    
+                </div>
+            </div>
             
-                </ul>
-    </div>
-</div>
-
-<div id="pagination-prev" style="display:none"> https://violeteternal.github.io/tag/YhO8AhuQLs
-</div>
-<div id="pagination-next" style="display:none"> </div>
-
-<div class="pagination-container">
-    
-    <a data-pjax href="https://violeteternal.github.io/tag/YhO8AhuQLs" class="mobile-prevpage">上一页</a>
-      
-    
-</div>
-
-<script>
-    var prevstr = document.getElementById("pagination-prev").innerHTML;
-    var nextstr = document.getElementById("pagination-next").innerHTML;
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var page3 = document.getElementById("page3");
-    page1.innerHTML = '-';
-    page2.innerHTML = '1';
-    page3.innerHTML = '-';
-    if (prevstr.length > 5) {
-        if (prevstr.indexOf("page/") != -1) {
-            var prevnum = parseInt(prevstr.split("page/")[1]);
-            page1.innerHTML = prevnum;
-            page2.innerHTML = prevnum + 1;
-        } else {
-            page1.innerHTML = 1;
-            page2.innerHTML = 2;
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2 id="ptitle">【题解】P3601 签到题</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://violeteternal.github.io/post/ti-jie-p3601-qian-dao-ti/</div>
+                <div id="rootaddr" style="display:none">https://violeteternal.github.io</div>
+                
+                    
+                
+            </div>
+            <div class="text ">
+                <p><a href="https://www.luogu.com.cn/problem/P3601">题目传送门</a></p>
+<h2 id="思路">思路</h2>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mi>i</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>a</mi><mi>o</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>x</mi><mo>−</mo><mi>ϕ</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">qiandao ( x ) = x- \phi (x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault">i</span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">a</span><span class="mord mathdefault">o</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ϕ</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></p>
+<p>线性筛出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>r</mi></msqrt><mo>=</mo><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">\sqrt{r} = 10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span> 以内的质数，然后再 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>r</mi><mo>−</mo><mi>l</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(r-l)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mclose">)</span></span></span></span> 暴力枚举每个质数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>r</mi><mi>i</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">prime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span></span></span> ，接着统计每一个质数对区间内数字的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϕ</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">\phi x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ϕ</span><span class="mord mathdefault">x</span></span></span></span> 的影响，再暴力求和。</p>
+<h2 id="ac-code">AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const ll MAXN=1e6+1;
+const ll Mod=666623333;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+ll Prime[MAXN],Cnt,l,r;
+bool St[MAXN];
+ll Vis[MAXN],Phi[MAXN],ans;
+inline void underGetPrime()
+{
+    memset(St,1,sizeof(St));
+    for(ll i=2;i&lt;MAXN;++i)
+    {
+        if(St[i]) Prime[Cnt++]=i;
+        for(ll j=0;j&lt;Cnt&amp;&amp;i*Prime[j]&lt;MAXN;++j)
+        {
+            St[i*Prime[j]]=0;
+            if(i%Prime[j]==0) break;
         }
     }
-    if (nextstr.indexOf("page/") != -1) {
-        var nextnum = parseInt(nextstr.split("page/")[1]);
-        page3.innerHTML = nextnum;
-        page2.innerHTML = nextnum - 1;
+}
+int main()
+{
+    // freopen(&quot;prime.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;prime.out&quot;,&quot;w&quot;,stdout);
+    underRead(l),underRead(r);
+    underGetPrime();
+    for(ll i=l;i&lt;=r;++i)
+    {
+        Vis[i-l]=i;
+        Phi[i-l]=i;
     }
-</script>
-                                <div style="padding-bottom:10%"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2"></div>
+    // for(ll i=0;i&lt;10;++i) prllf(&quot;%d &quot;,Prime[i]);
+    for(ll i=0;i&lt;Cnt&amp;&amp;Prime[i]*Prime[i]&lt;=r;++i)
+    {
+        ll pr=Prime[i],beg=l;
+        if(l%pr!=0) beg=l/pr*pr+pr;
+        for(ll j=beg;j&lt;=r;j+=pr)
+        {
+            Phi[j-l]=Phi[j-l]/pr*(pr-1);
+            while(Vis[j-l]%pr==0) Vis[j-l]/=pr;
+        }
+    }
+    for(ll i=l;i&lt;=r;++i)
+    {
+        if(Vis[i-l]&gt;1) Phi[i-l]=Phi[i-l]/Vis[i-l]*(Vis[i-l]-1);
+        ans=(ans+(i-Phi[i-l])%Mod)%Mod;
+    }
+    printf(&quot;%lld&quot;,ans);
+    return 0;
+}
+/*
+2333333333 2333666666
+*/
+</code></pre>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            <div class="donateContainer">
+                <span class="donatebtn">赏</span>
+            </div>
+            <div class="donateContainer">
+                <img src="" alt="" class="donate">
+            </div>
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>written by _Eternal_</li>
+            <li><strong>原文链接：</strong>https://violeteternal.github.io/post/ti-jie-p3601-qian-dao-ti/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        
+            <div class="shareContainer">
+                <div class="share" style="height:30px;background: white;">
+                    <a class="qq" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/qqs.png" alt=""></i></a>
+                    <a class="wechat" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/wechats.png" alt=""></i></a>
+                    <a class="weibo" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/weibos.png" alt=""></i></a>
+                    <a class="qzone" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/qzones.png" alt=""></i></a>
+                    <a class="douban" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/doubans.png" alt=""></i></a>
+                    <a class="facebook" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/facebooks.png" alt=""></i></a>
+                    <a class="twitter" href=""><i><img class="shareicon"
+                                src="https://violeteternal.github.io/media/images/twitter.png" alt=""></i></a>
                 </div>
-                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
-                
-                <!------------------ 顶部菜单栏html👇--------->
-                
-                <!------------------ 顶部菜单栏html👆--------->
+            </div>
+            
+        <div id="otherpost">
+            
+            
+            <a data-pjax class="next-post-pc" href="https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/"  style="color: black;">
+                <div id="npcontainer">
+                    
+                    <img src="https://www.imageoss.com/images/2022/02/10/-69fd8cba742aa4c1de.jpg" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">【题解】P4035 球形空间产生器</h4>
+                </div>
+            </a>
+            <div class="next-post">
+                下一篇 <a  data-pjax href="https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/">【题解】P4035 球形空间产生器</a>
             </div>
             
         </div>
-        <div id="bg">
-        </div>
-        <!------- 背景图加载方式👇----- -->
-        <div id="bgchoice" style="display: none">link
-                    </div>
-                    
-                    <div id="bgurl" style="display:none">https://www.imageoss.com/images/2022/01/26/DIGIT-FAULTdeep-space-894aceafabd5079a.jpg</div>
-                       
-        </div>
-        <!------- 背景图加载方式👆 --------------->
-</div>
-</div>
-
-        <div id="landlord">
-            <div class="message" style="opacity:0"></div>
-            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-        </div>
-        <div id="domainname" style="display:none">https://violeteternal.github.io
-                </div>
+    </div>
+    </div>
+    </div>
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <img class="modal-content" id="img01">
+    </div>
 </body>
-</html>
-<!-------------------- live2d功能👇 --------------------------->
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+                    <div class="toc-container">
+                        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#ac-code">AC Code：</a></li>
+</ul>
+</li>
+</ul>
+
+                    </div>
+                    <div class="tog">
+                        <div class="toggleContainer">
+                            <div class="toggle">
+                                <i class="fas fa-angle-double-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👇 ------------------------->
+                    <div id="comment" class="comment">
+                        <div class="commentcontainer">
+                            
+                                
+                            
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👆 ------------------------->
+                </div>
+                <!-- main标签，pjax渲染时加载以上内容👆 -->
+                <div class="col-md-1 col-lg-2"></div>
+                <div id="bg">
+                </div>
+            </div>
+            <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+            
+        </div>
+        <!-- aplayer播放器加载👇 -->
+            
+        <!-- aplayer播放器加载👆 -->
+    </div>
+    
+
+    <!-- 背景图加载方式👇 -->
+    <div id="bgchoice" style="display: none">link
+                </div>
+                
+                <div id="bgurl" style="display:none">https://www.imageoss.com/images/2022/01/26/DIGIT-FAULTdeep-space-894aceafabd5079a.jpg</div>
+                
+    <!-- 背景图加载方式👆 -->
+</body>
+
+<script>
+    //初始化
+    //更换twikoo头像
+    setTimeout(replaceAvatar,1000);
+    setTimeout(replaceAvatar,2000);
+    setTimeout(replaceAvatar,8000);
+    // --------为每张图片添加懒加载（lazyload）标签-->懒加载功能 👇------------
+    lazyload();
+    //为文章内所有代码块添加代码复制功能 👇
+    codeinit();
+    // ------代码高亮显示功能-------------
+    hljs.initHighlightingOnLoad();
+    if (shareChoice)
+        shareInit();
+    if (donateChoice)
+        donateInit();
+</script>
+
+<!------------------ 加载live2d模型功能（看板娘）👇 ---------------->
 
 <script type="text/javascript">
     var message_Path = '/live2d/'
@@ -1359,7 +1424,29 @@ menulist.eq(i).show();
     loadlive2d("live2d", "https://violeteternal.github.io/media/live2d/assets/tororo.model.json");
 </script>
 
-<!-------------------- live2d功能👆--------------------------->
+<!------------------ 加载live2d模型功能（看板娘）👆 ---------------->
+
+
+<!----------------------- 返回顶部按钮功能👇 --------------------->
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+<!----------------------- 返回顶部按钮功能👆 --------------------->
+
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1381,4 +1468,28 @@ menulist.eq(i).show();
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
 
+
+
 <script src="https://violeteternal.github.io/media/js/index.js"></script>
+
+
+<script>
+    //加载后的事件同步（阅读量、移动端评论等
+    window.onload = function () {
+    //代码块高亮渲染
+    document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+    });
+        getHotnum();
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);   //插件只会寻找一个分享标签渲染，所以需要手动添加到移动端
+        aplayerbtnInit();
+        $(".hljs").css({
+            "padding": "20px"
+        })
+    }
+</script>
+
+<!-- <script src="https://violeteternal.github.io/media/js/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-live-query-min.js"></script> -->
