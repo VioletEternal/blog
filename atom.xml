@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-11T03:53:54.388Z</updated>
+    <updated>2022-02-11T06:29:36.055Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -10,6 +10,96 @@
     <logo>https://violeteternal.github.io/images/avatar.png</logo>
     <icon>https://violeteternal.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, EternalTimeLine</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】CF451E Devus and Flowers]]></title>
+        <id>https://violeteternal.github.io/post/ti-jie-cf451e-devus-and-flowers/</id>
+        <link href="https://violeteternal.github.io/post/ti-jie-cf451e-devus-and-flowers/">
+        </link>
+        <updated>2022-02-11T06:26:50.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/CF451E">题目传送门</a></p>
+<h2 id="注意">注意</h2>
+<p>用费马小定理推答案，记得卡常和开 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>n</mi><mi>g</mi><mi>l</mi><mi>o</mi><mi>n</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">long long</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span></span></span></span> 。</p>
+<h2 id="ac-code">AC Code：</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int MAXN=21;
+const int Mod=1e9+7;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+ll A[MAXN];
+int down=1;
+inline int underQmi(int a,int k,int p)
+{
+    int res=1;
+    while(k)
+    {
+        if(k&amp;1) res=(ll)res*a%p;
+        a=(ll)a*a%p;
+        k&gt;&gt;=1;
+    }
+    return res;
+}
+inline int underC(ll a,ll b)
+{
+    if(a&lt;b) return 0;
+    int up=1;
+    for(ll i=a;i&gt;a-b;--i) up=i%Mod*up%Mod;
+    return (ll)up*down%Mod; //费马小定理
+} 
+int main()
+{
+    // freopen(&quot;DaF.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;DaF.out&quot;,&quot;w&quot;,stdout);
+    ll n,m;
+    underRead(n),underRead(m);
+    for(int i=0;i&lt;n;++i) underRead(A[i]);
+    for(int j=1;j&lt;n;++j) down=(ll)j*down%Mod;
+    down=underQmi(down,Mod-2,Mod);
+    int res=0;
+    for(int i=0;i&lt;1&lt;&lt;n;++i)
+    {
+        ll a=n+m-1,b=n-1;
+        int sign=1;
+        for(int j=0;j&lt;n;++j)
+            if(i&gt;&gt;j&amp;1)
+            {
+                sign*=-1;
+                a-=A[j]+1;
+            }
+        res=(res+underC(a,b)*sign)%Mod;
+    }
+    printf(&quot;%d&quot;,(res+Mod)%Mod);
+    return 0;
+}
+/*
+3 5
+1 3 2
+*/
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3601 签到题]]></title>
         <id>https://violeteternal.github.io/post/ti-jie-p3601-qian-dao-ti/</id>
@@ -994,106 +1084,6 @@ int main()
 
 n=x-1
 m=k-1
-*/
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【题解】P3193 GT考试]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p3193-gt-kao-shi/">
-        </link>
-        <updated>2022-02-10T02:07:49.000Z</updated>
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3193">题目传送门</a></p>
-<p>预处理 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">DP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 数组的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>M</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KMP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 预配指针，再矩阵快速幂求出所有的集合。</p>
-<p>使用闫氏DP分析法可得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 数组的集合意义。</p>
-<p>AC Code：</p>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cmath&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;algorithm&gt;
-#include&lt;ctime&gt;
-#include&lt;iomanip&gt;
-#include&lt;queue&gt;
-#include&lt;stack&gt;
-#include&lt;map&gt;
-#include&lt;vector&gt;
-#define gh() getchar()
-#define underMax(x,y) ((x)&gt;(y)?(x):(y))
-#define underMin(x,y) ((x)&lt;(y)?(x):(y))
-typedef long long ll;
-using namespace std;
-const int MAXN=21;
-template&lt;class T&gt;
-inline void underRead(T &amp;x)
-{
-    x=0;
-    char ch=gh(),t=0;
-    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
-    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
-    if(t) x=-x;
-}
-int N,M,K;
-int f[MAXN][MAXN];      //f(i,j)表示所有长度为i，且不包含M串
-                        //且该串的末尾部分和S串当前匹配的最大长度为j
-                        //的所有字符串的集合。
-char str[MAXN];
-int Kmp[MAXN];
-inline void underExpr(int c[][MAXN],int a[][MAXN],int b[][MAXN])
-{
-    static int t[MAXN][MAXN];
-    memset(t,0,sizeof(t));
-    for(int i=0;i&lt;M;++i)
-        for(int j=0;j&lt;M;++j)
-            for(int k=0;k&lt;M;++k)
-                t[i][j]=(t[i][j]+a[i][k]*b[k][j])%K;
-    for(int i=0;i&lt;M;++i)
-        for(int j=0;j&lt;M;++j)
-            c[i][j]=t[i][j];
-}
-inline int underQuickPow(int k)
-{
-    int f0[MAXN][MAXN]={1};
-    while(k)
-    {
-        if(k&amp;1) underExpr(f0,f0,f);
-        underExpr(f,f,f);
-        k&gt;&gt;=1;
-    }
-    int res=0;
-    for(int i=0;i&lt;M;++i) res=(res+f0[0][i])%K;
-    return res;
-}
-int main()
-{
-    // freopen(&quot;GTtest.in&quot;,&quot;r&quot;,stdin);
-    // freopen(&quot;GTtest.out&quot;,&quot;w&quot;,stdout);
-    underRead(N),underRead(M),underRead(K);
-    scanf(&quot;%s&quot;,str+1);
-    for(int i=2,j=0;i&lt;=M;++i)
-    {
-        while(j&amp;&amp;str[j+1]!=str[i]) j=Kmp[j];
-        if(str[j+1]==str[i])++j;
-        Kmp[i]=j;
-    }
-    //初始化f
-    for(int j=0;j&lt;M;++j)
-        for(int c='0';c&lt;='9';++c)
-        {
-            int k=j;
-            while(k&amp;&amp;str[k+1]!=c) k=Kmp[k];
-            if(str[k+1]==c) ++k;
-            if(k&lt;M) ++f[j][k];
-        }
-    //f(n)=f(0)+A^N
-    printf(&quot;%d&quot;,underQuickPow(N));
-    return 0;
-}
-/*
-4 3 100
-111
 */
 </code></pre>
 ]]></content>
