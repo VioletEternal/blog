@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-12T08:59:52.980Z</updated>
+    <updated>2022-02-13T01:48:08.815Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -285,6 +285,151 @@ int main()
 1 2 3 7 6 4 5 2
 */
 </code></pre>
+<h2 id="题目iii黑客hack">题目III——黑客（Hack）</h2>
+<h3 id="题目含义-2">题目含义</h3>
+<p>给定一个有向图，从任意一点出发遍历所有点，删除所有经过的边；再从任意一点出发遍历所有点，如果能达到，求出两次所需的最小权值和。</p>
+<h3 id="思路-3">思路</h3>
+<p><s>说实话，当看到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>10</mn><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>25</mn></mrow><annotation encoding="application/x-tex">n \leq 10 , m \leq 25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">5</span></span></span></span> 时我真的以为正解是爆搜</s>。然而测试数据有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 套。</p>
+<p>跑一遍最小生成树（建议 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>r</mi><mi>u</mi><mi>s</mi><mi>k</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">Kruskal</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">u</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span> ），求出这棵树上的必要边（删掉会使原图最小生成树的总权值变大的边）。这些边必在第二棵最小生成树里。枚举必要边在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 生成树里的情况，则 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi><mo>=</mo><mi>min</mi><mo>⁡</mo><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">ans = \min ( a + b )</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">b</span><span class="mclose">)</span></span></span></span> 。</p>
+<p><s>可惜蒟蒻到最后也没打出来qwq</s></p>
+<h3 id="task-three-ac-code">Task Three AC Code</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;algorithm&gt;
+#include&lt;ctime&gt;
+#include&lt;iomanip&gt;
+#include&lt;queue&gt;
+#include&lt;stack&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int MAXN=101;
+const int MAXM=206;
+const int INF=1e9;
+template&lt;class T&gt;
+inline void underRead(T &amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
+    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+struct Node
+{
+    int u,v,w;
+}Edge[MAXM&lt;&lt;2];
+int id[MAXN],b[MAXN],c[MAXN];
+int f[MAXN],coun,cnt,num,n,m;
+bool vis[MAXM];
+inline bool underCmp(Node a,Node b)
+{
+    return a.w&lt;b.w;
+}
+inline int underFind(int x)
+{
+    if(id[x]==x) return x;
+    return id[x]=underFind(id[x]);
+}
+inline void underInit()
+{
+    cnt=num=0;
+    memset(vis,0,sizeof(vis));
+}
+inline void underInPut()
+{
+    underRead(m);
+    for(int i=1;i&lt;=m;++i) scanf(&quot;%d%d%d&quot;,&amp;Edge[i].u,&amp;Edge[i].v,&amp;Edge[i].w);
+    sort(Edge+1,Edge+1+m,underCmp);
+}
+inline int underKruskal(int x)
+{
+    int ret=0;
+    for(int i=0;i&lt;=n+1;++i) id[i]=i;
+    for(int i=1;i&lt;=m;++i)
+    {
+        int p1=underFind(Edge[i].u),p2=underFind(Edge[i].v);
+        if(p1!=p2&amp;!vis[i])
+        {
+            if(x==1) b[cnt++]=i;
+            if(x==3) f[coun++]=i;
+            ret+=Edge[i].w;
+            id[p2]=p1;
+        }
+    }
+    int tp=underFind(1);
+    for(int i=1;i&lt;=n;++i) if(underFind(i)!=tp) return INF;
+    return ret;
+}
+inline int underDeal(int cd)
+{
+    int tp=0,d[MAXN];
+    for(int j=0;j&lt;num;++j) if(cd&amp;(1&lt;&lt;j)) d[tp++]=c[j];
+    memset(vis,0,sizeof(vis));
+    for(int i=0;i&lt;tp;++i) vis[d[i]]=1;
+    coun=0;
+    int x1=underKruskal(3);
+    for(int i=0;i&lt;coun;++i) vis[f[i]]=1;
+    for(int i=0;i&lt;tp;++i) vis[d[i]]=0;
+    int x2=underKruskal(2);
+    return x1+x2;
+}
+inline void underAns(int x)
+{
+    if(x&gt;=INF) printf(&quot;Too young too simple,sometimes naive!\n&quot;);
+    else printf(&quot;%d\n&quot;,x);
+}
+inline void underWork()
+{
+    int ret=underKruskal(1);
+    for(int i=0;i&lt;cnt;++i)
+    {
+        memset(vis,0,sizeof(vis));
+        vis[b[i]]=1;
+        int tp=underKruskal(2);
+        if(ret&lt;tp) c[num++]=b[i];
+    }
+    int len=1&lt;&lt;num,ans=INF;
+    for(int i=0;i&lt;len;++i) ans=underMin(ans,underDeal(i));
+    underAns(ans);
+}
+int main()
+{
+    freopen(&quot;hack.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;hack.out&quot;,&quot;w&quot;,stdout);
+    while(scanf(&quot;%d&quot;,&amp;n)!=EOF)
+    {
+        if(!n) break;
+        underInit();
+        underInPut();
+        underWork();
+    }
+    return 0;
+}
+/*
+2
+3
+1 2 10
+2 1 20
+1 2 30
+3
+3
+1 2 10
+1 2 20
+2 3 50
+0
+*/
+</code></pre>
+<h2 id="题目iv膜拜大会fake">题目IV——膜拜大会（fake）</h2>
+<p>过于毒瘤，不会qwq</p>
+<p><a href="https://blog.csdn.net/qq_43649416/article/details/101123235">给一个链接</a></p>
 ]]></content>
     </entry>
     <entry>
