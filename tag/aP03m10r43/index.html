@@ -5,11 +5,11 @@
   <meta charset="UTF-8" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="keywords" content="Gridea静态个人博客">
+<meta name="keywords" content="Gridea静态个人博客 VioletEternal">
 <meta name="description" content="Eternaltale的OI平行世界">
-<meta name="theme-color" content="#000">
+<meta name="theme-color" content="#ced4da">
 <title>EternalTimeLine</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1644799766670">
+<link rel="shortcut icon" href="/favicon.ico?v=1644815675455">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -18,6 +18,9 @@
 
 <link href="/media/hljs/styles/default.css"
   rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-loading-bar.css" rel="stylesheet" />
 
 <link rel="stylesheet" href="/styles/main.css">
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -74,8 +77,6 @@
           
             
             
-              
-            
             <li class="nav-item ">
               
               
@@ -86,8 +87,6 @@
             </li>
           
             
-            
-              
             
             <li class="nav-item ">
               
@@ -100,8 +99,6 @@
           
             
             
-              
-            
             <li class="nav-item ">
               
               
@@ -113,8 +110,6 @@
           
             
             
-              
-            
             <li class="nav-item ">
               
               
@@ -124,16 +119,6 @@
               
             </li>
           
-          
-            
-              <li class="nav-item ">
-                <a href="/friends/" target="_self">
-                  
-                    <i class="fa fa-address-book"></i> 友链
-                  
-                </a>
-              </li>
-            
           
           
             <li id="fa_search" class="nav-item">
@@ -193,13 +178,13 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">23</span>
+        <span class="site-item-stat-count">24</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">18</span>
+        <span class="site-item-stat-count">19</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -224,11 +209,11 @@
             </a>
           
             <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0">
-              <i class="fa fa-bilibili" title="落幕の残影"></i>
+              <i class="fa fa-home" title="落幕の残影"></i>
             </a>
           
             <a href="https://www.luogu.com.cn/user/444040">
-              <i class="fa fa-luogu" title="_Eternal_"></i>
+              <i class="fa fa-home" title="_Eternal_"></i>
             </a>
           
         
@@ -239,6 +224,45 @@
               <i class="fa fa-globe" title="" ></i>
             </a>
           
+        
+      </div>
+    </div>
+  
+
+  
+    <div class="sidebar-item right-motion sidebar-item-friends">
+      
+        <p class="friends-title"><i class="fa fa-ship"></i> 友链</p>
+      
+      <div class="friends-box">
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/109659">机房最巨_Live_</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/291248">机房更巨赵悦岑</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/193684">技术总监Song_Gch</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/384233">机房最惨shadow_ltq</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/109660">机房最矮凌寒</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/121749">倒一战神kney</a>
+          </p>
+        
+          <p>
+            <a href="https://www.luogu.com.cn/user/211276">Violet先辈闲人</a>
+          </p>
         
       </div>
     </div>
@@ -278,6 +302,16 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -607,7 +641,7 @@
                     
 <link rel="stylesheet" href="/media/live2d/css/live2d.css" />
 <div class="box-scale">
-  <div id="landlord" style="left: 1300px;bottom: px;"
+  <div id="landlord" style="left: 1000px;bottom: px;"
     data-key="">
     <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
     
@@ -1358,6 +1392,13 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://violeteternal.github.io/post/learning-note-monotonous-queue-of-dp/"" data-c="
+          &lt;h2 id=&#34;单调队列&#34;&gt;单调队列&lt;/h2&gt;
+&lt;p&gt;单调队列是一种&lt;strong&gt;队列内的元素有单调性&lt;/strong&gt;的队列。&lt;/p&gt;
+">【学习笔记】单调队列优化Dp</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://violeteternal.github.io/post/learning-note-analytical-mathematics-limits-of-functions/"" data-c="
