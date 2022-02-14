@@ -9,7 +9,7 @@
 <meta name="description" content="Eternaltale的OI平行世界">
 <meta name="theme-color" content="#ced4da">
 <title>【学习笔记】闫氏DP分析法 | EternalTimeLine</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1644818920937">
+<link rel="shortcut icon" href="/favicon.ico?v=1644820350783">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -79,6 +79,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -89,6 +91,8 @@
             </li>
           
             
+            
+              
             
             <li class="nav-item ">
               
@@ -101,6 +105,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -112,6 +118,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -121,6 +129,16 @@
               
             </li>
           
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友链
+                  
+                </a>
+              </li>
+            
           
           
             <li id="fa_search" class="nav-item">
@@ -234,6 +252,10 @@
               <i class="fa fa-home" title="_Eternal_"></i>
             </a>
           
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2804578912&amp;site=qq&amp;menu=yes">
+              <i class="fa fa-qq" title="落幕听风のViolet"></i>
+            </a>
+          
         
         
           
@@ -242,45 +264,6 @@
               <i class="fa fa-globe" title="" ></i>
             </a>
           
-        
-      </div>
-    </div>
-  
-
-  
-    <div class="sidebar-item right-motion sidebar-item-friends">
-      
-        <p class="friends-title"><i class="fa fa-ship"></i> 友链</p>
-      
-      <div class="friends-box">
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/109659">机房最巨_Live_</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/291248">机房更巨赵悦岑</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/193684">技术总监Song_Gch</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/384233">机房最惨shadow_ltq</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/109660">机房最矮凌寒</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/121749">倒一战神kney</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.com.cn/user/211276">Violet先辈闲人</a>
-          </p>
         
       </div>
     </div>
@@ -1766,7 +1749,97 @@
     1. 维护区间最值 &lt;Br /&gt;
     2. 优化 DP
 &lt;/details&gt;
-&lt;p&gt;单调队列在队首和队尾都可以进行&lt;strong&gt;出队操作&lt;/strong&gt;，但只有队尾可以进行&lt;strong&gt;入队&lt;/strong&gt;操作。这样的操作类似于双端队列（&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;deque&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;）允许双端弹出。&lt;/p&gt;
+&lt;p&gt;单调队列在队首和队尾都可以进行&lt;strong&gt;出队操作&lt;/strong&gt;，但只有队尾可以进行&lt;strong&gt;入队&lt;/strong&gt;操作。这样的操作类似于双端队列（&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;deque&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;）允许双端弹出。但一般来说，还是不建议使用 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;STL&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;L&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 库，手写方便且比较节省时间。&lt;/p&gt;
+&lt;h2 id=&#34;栗子&#34;&gt;栗子&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1886&#34;&gt;【模板】单调队列/滑动窗口&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;题意&#34;&gt;题意&lt;/h3&gt;
+&lt;p&gt;求出区间最大值和最小值，因为复杂度限制 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;log&lt;/mi&gt;&lt;mo&gt;⁡&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;O(n \log n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mop&#34;&gt;lo&lt;span style=&#34;margin-right:0.01389em;&#34;&gt;g&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 所以无法暴力。就使用单调队列的优化。&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;查看代码&lt;/summary&gt;
+    &lt;pre&gt;
+#include&amp;ltiostream&amp;gt
+#include&amp;ltcstdio&amp;gt
+#include&amp;ltcmath&amp;gt
+#include&amp;ltcstring&amp;gt
+#include&amp;ltcstdlib&amp;gt
+#include&amp;ltalgorithm&amp;gt
+#include&amp;ltctime&amp;gt
+#include&amp;ltiomanip&amp;gt
+#include&amp;ltqueue&amp;gt
+#include&amp;ltstack&amp;gt
+#include&amp;ltmap&amp;gt
+#include&amp;ltvector&amp;gt
+using namespace std;
+using std::cin;
+using std::cout;
+int N,K,A[1000001];
+int Q[10000001];
+int P[10000001],head,tail;
+inline void underMax()
+{
+	head=1;
+	tail=0;
+	for(int i=1;i&lt;=N;++i)
+	{
+		while(head&lt;=tail&amp;&amp;Q[tail]&lt;=A[i])
+		{
+			tail--;
+		}
+		Q[++tail]=A[i];
+		P[tail]=i;
+		while(P[head]&lt;=i-K)
+		{
+			head++;
+		}
+		if(i&gt;=K)
+		{
+			printf(&#34;%d &#34;,Q[head]);
+		}
+	}
+}
+inline void underMin()
+{
+	head=1;
+	tail=0;
+	for(int i=1;i&lt;=N;++i)
+	{
+		while(head&lt;=tail&amp;&amp;Q[tail]&gt;=A[i])
+		{
+			tail--;
+		}
+		Q[++tail]=A[i];
+		P[tail]=i;
+		while(P[head]&lt;=i-K)
+		{
+			head++;
+		}
+		if(i&gt;=K)
+		{
+			printf(&#34;%d &#34;,Q[head]);
+		}
+	}
+}
+int main()
+{
+//	freopen(&#34;.in&#34;,&#34;r&#34;,stdin);
+//	freopen(&#34;.out&#34;,&#34;w&#34;,stdout);
+	scanf(&#34;%d%d&#34;,&amp;N,&amp;K);
+	for(int i=1;i&lt;=N;++i)
+	{
+		scanf(&#34;%d&#34;,&amp;A[i]);
+	}
+	underMin();
+	printf(&#34;\n&#34;);
+	underMax();
+	return 0;
+}
+/*
+8 3
+1 3 -1 -3 5 3 6 7
+*/
+&lt;/pre&gt;
+&lt;/details&gt;
+&lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
 ">【学习笔记】单调队列优化Dp</a>
       </div>
       
