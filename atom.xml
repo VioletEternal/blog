@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-13T13:44:33.789Z</updated>
+    <updated>2022-02-14T00:49:55.315Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2022, EternalTimeLine</rights>
     <entry>
         <title type="html"><![CDATA[【学习笔记】函数与极限]]></title>
-        <id>https://violeteternal.github.io/post/xue-xi-bi-ji-han-shu-yu-ji-xian/</id>
-        <link href="https://violeteternal.github.io/post/xue-xi-bi-ji-han-shu-yu-ji-xian/">
+        <id>https://violeteternal.github.io/post/learning-note-analytical-mathematics-limits-of-functions/</id>
+        <link href="https://violeteternal.github.io/post/learning-note-analytical-mathematics-limits-of-functions/">
         </link>
         <updated>2022-02-13T02:03:42.000Z</updated>
         <content type="html"><![CDATA[<p>在了解函数极限之前，我们需要知道一些概念。</p>
@@ -49,8 +49,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】NOIP2022.02.12模拟赛]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-noip20220212-mo-ni-sai/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-noip20220212-mo-ni-sai/">
+        <id>https://violeteternal.github.io/post/key-noip20220212/</id>
+        <link href="https://violeteternal.github.io/post/key-noip20220212/">
         </link>
         <updated>2022-02-12T07:12:21.000Z</updated>
         <content type="html"><![CDATA[<h2 id="题目i城墙wall">题目I——城墙（wall）</h2>
@@ -473,8 +473,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【学习笔记】数列与极限 #2]]></title>
-        <id>https://violeteternal.github.io/post/xue-xi-bi-ji-shu-lie-yu-ji-xian-2/</id>
-        <link href="https://violeteternal.github.io/post/xue-xi-bi-ji-shu-lie-yu-ji-xian-2/">
+        <id>https://violeteternal.github.io/post/learning-note-analytical-mathematics-series-limits-2/</id>
+        <link href="https://violeteternal.github.io/post/learning-note-analytical-mathematics-series-limits-2/">
         </link>
         <updated>2022-02-11T12:42:29.000Z</updated>
         <content type="html"><![CDATA[<h2 id="实数的完备性定理部分">实数的完备性定理（部分）</h2>
@@ -525,8 +525,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】CF451E Devus and Flowers]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-cf451e-devus-and-flowers/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-cf451e-devus-and-flowers/">
+        <id>https://violeteternal.github.io/post/key-cf451e/</id>
+        <link href="https://violeteternal.github.io/post/key-cf451e/">
         </link>
         <updated>2022-02-11T06:26:50.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/CF451E">题目传送门</a></p>
@@ -615,8 +615,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3601 签到题]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p3601-qian-dao-ti/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p3601-qian-dao-ti/">
+        <id>https://violeteternal.github.io/post/key-p3601/</id>
+        <link href="https://violeteternal.github.io/post/key-p3601/">
         </link>
         <updated>2022-02-11T03:43:03.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3601">题目传送门</a></p>
@@ -712,8 +712,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P4035 球形空间产生器]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p4035-qiu-xing-kong-jian-chan-sheng-qi/">
+        <id>https://violeteternal.github.io/post/key-p4035/</id>
+        <link href="https://violeteternal.github.io/post/key-p4035/">
         </link>
         <updated>2022-02-11T01:49:31.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4035">题目传送门</a></p>
@@ -809,8 +809,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P3200 有趣的数列]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p3200-you-qu-de-shu-lie/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p3200-you-qu-de-shu-lie/">
+        <id>https://violeteternal.github.io/post/key-p3200/</id>
+        <link href="https://violeteternal.github.io/post/key-p3200/">
         </link>
         <updated>2022-02-11T01:05:03.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3200">题目传送门</a></p>
@@ -910,8 +910,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【学习笔记】数列与极限]]></title>
-        <id>https://violeteternal.github.io/post/xue-xi-bi-ji-shu-lie-yu-ji-xian/</id>
-        <link href="https://violeteternal.github.io/post/xue-xi-bi-ji-shu-lie-yu-ji-xian/">
+        <id>https://violeteternal.github.io/post/learning-note-analytical-mathematics-series-limits/</id>
+        <link href="https://violeteternal.github.io/post/learning-note-analytical-mathematics-series-limits/">
         </link>
         <updated>2022-02-10T23:18:17.000Z</updated>
         <content type="html"><![CDATA[<blockquote>
@@ -998,8 +998,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】P4588 数学计算]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-p4588-shu-xue-ji-suan/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-p4588-shu-xue-ji-suan/">
+        <id>https://violeteternal.github.io/post/key-p4588/</id>
+        <link href="https://violeteternal.github.io/post/key-p4588/">
         </link>
         <updated>2022-02-10T11:53:52.000Z</updated>
         <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4588">题目传送门</a></p>
@@ -1107,8 +1107,8 @@ int main()
     </entry>
     <entry>
         <title type="html"><![CDATA[【题解】SP2713 and P4145]]></title>
-        <id>https://violeteternal.github.io/post/ti-jie-sp2713andp4145/</id>
-        <link href="https://violeteternal.github.io/post/ti-jie-sp2713andp4145/">
+        <id>https://violeteternal.github.io/post/key-sp2713-p4145/</id>
+        <link href="https://violeteternal.github.io/post/key-sp2713-p4145/">
         </link>
         <updated>2022-02-10T10:54:30.000Z</updated>
         <content type="html"><![CDATA[<p>双倍经验~</p>
