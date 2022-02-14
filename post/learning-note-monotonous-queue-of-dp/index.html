@@ -9,7 +9,7 @@
 <meta name="description" content="Eternaltale的OI平行世界">
 <meta name="theme-color" content="#ced4da">
 <title>【学习笔记】单调队列优化Dp | EternalTimeLine</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1644828024188">
+<link rel="shortcut icon" href="/favicon.ico?v=1644830551197">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -313,6 +313,7 @@
 <li><a href="#ac-code">AC Code：</a></li>
 </ul>
 </li>
+<li><a href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85">单调队列优化多重背包</a></li>
 <li><a href="#%E7%BB%83%E4%B9%A0">练习</a></li>
 </ul>
 </li>
@@ -618,7 +619,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >296<span class="pc-show language" data-lan="words"
+        >301<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -726,6 +727,55 @@ int main()
 */
 </pre>
 </details>
+<br>
+<h2 id="单调队列优化多重背包">单调队列优化多重背包</h2>
+<p><a href="https://www.acwing.com/problem/content/6/">Acwing 6 多重背包III</a></p>
+<details>
+    <summary>查看代码</summary>
+    <pre>
+#include&ltiostream&gt
+#include&ltcstdio&gt
+#include&ltcmath&gt
+#include&ltcstring&gt
+#include&ltcstdlib&gt
+#include&ltalgorithm&gt
+#include&ltctime&gt
+#include&ltiomanip&gt
+#include&ltqueue&gt
+#include&ltstack&gt
+#include&ltmap&gt
+#include&ltvector&gt
+using namespace std;
+using std::cin;
+using std::cout;
+int n,V;
+int v,w,s;
+int dp[20001],pre[20001],q[20001];
+int main()
+{
+    scanf("%d%d",&n,&V);
+    for(int i=1;i<=n;++i)
+    {
+        memcpy(pre, dp, sizeof(dp));
+        int v, w, s;
+        cin >>v>>w>>s;
+        for (int j=0;j<v;++j)
+        {
+            int head=0, tail=-1;
+            for (int k=j;k<=V;k+=v)
+            {
+                        if (head<=tail&&k-s*v>q[head]) ++head;
+            while(head<=tail&&pre[q[tail]]-(q[tail]-j)/v*w<=pre[k]-(k-j)/v*w) --tail;
+            if (head<=tail) dp[k]=max(dp[k],pre[q[head]]+(k-q[head])/v*w);
+            q[++tail]=k;
+        }
+    }
+}
+printf("%d",dp[V]);
+return 0;
+</pre>
+</details>
+<br>
 <h2 id="练习">练习</h2>
 <p><a href="https://www.luogu.com.cn/problem/P1440">P1440 求m区间内的最小值</a></p>
 <p><a href="https://www.luogu.com.cn/problem/P2032">P2032 扫描</a></p>
@@ -1928,6 +1978,55 @@ int main()
 */
 &lt;/pre&gt;
 &lt;/details&gt;
+&lt;br&gt;
+&lt;h2 id=&#34;单调队列优化多重背包&#34;&gt;单调队列优化多重背包&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.acwing.com/problem/content/6/&#34;&gt;Acwing 6 多重背包III&lt;/a&gt;&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;查看代码&lt;/summary&gt;
+    &lt;pre&gt;
+#include&amp;ltiostream&amp;gt
+#include&amp;ltcstdio&amp;gt
+#include&amp;ltcmath&amp;gt
+#include&amp;ltcstring&amp;gt
+#include&amp;ltcstdlib&amp;gt
+#include&amp;ltalgorithm&amp;gt
+#include&amp;ltctime&amp;gt
+#include&amp;ltiomanip&amp;gt
+#include&amp;ltqueue&amp;gt
+#include&amp;ltstack&amp;gt
+#include&amp;ltmap&amp;gt
+#include&amp;ltvector&amp;gt
+using namespace std;
+using std::cin;
+using std::cout;
+int n,V;
+int v,w,s;
+int dp[20001],pre[20001],q[20001];
+int main()
+{
+    scanf(&#34;%d%d&#34;,&amp;n,&amp;V);
+    for(int i=1;i&lt;=n;++i)
+    {
+        memcpy(pre, dp, sizeof(dp));
+        int v, w, s;
+        cin &gt;&gt;v&gt;&gt;w&gt;&gt;s;
+        for (int j=0;j&lt;v;++j)
+        {
+            int head=0, tail=-1;
+            for (int k=j;k&lt;=V;k+=v)
+            {
+                        if (head&lt;=tail&amp;&amp;k-s*v&gt;q[head]) ++head;
+            while(head&lt;=tail&amp;&amp;pre[q[tail]]-(q[tail]-j)/v*w&lt;=pre[k]-(k-j)/v*w) --tail;
+            if (head&lt;=tail) dp[k]=max(dp[k],pre[q[head]]+(k-q[head])/v*w);
+            q[++tail]=k;
+        }
+    }
+}
+printf(&#34;%d&#34;,dp[V]);
+return 0;
+&lt;/pre&gt;
+&lt;/details&gt;
+&lt;br&gt;
 &lt;h2 id=&#34;练习&#34;&gt;练习&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P1440&#34;&gt;P1440 求m区间内的最小值&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P2032&#34;&gt;P2032 扫描&lt;/a&gt;&lt;/p&gt;
