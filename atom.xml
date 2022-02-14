@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-14T05:15:58.682Z</updated>
+    <updated>2022-02-14T06:05:50.201Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -17,7 +17,13 @@
         </link>
         <updated>2022-02-14T03:42:18.000Z</updated>
         <content type="html"><![CDATA[<h2 id="单调队列">单调队列</h2>
-<p>单调队列是一种<strong>队列内的元素有单调性</strong>的队列。</p>
+<p>单调队列是一种<strong>队列内的元素有单调性</strong>（递增或递减）的队列。答案（最优解）存在队首。一般用于维护区间最值或者降低 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">Dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault">p</span></span></span></span> 数组的维度来减少空间及时间的目的。</p>
+<details>
+    <summary>单调队列的作用</summary>
+    1. 维护区间最值 <Br />
+    2. 优化 DP
+</details>
+<p>单调队列在队首和队尾都可以进行<strong>出队操作</strong>，但只有队尾可以进行<strong>入队</strong>操作。这样的操作类似于双端队列（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">deque</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span></span></span></span>）允许双端弹出。</p>
 ]]></content>
     </entry>
     <entry>

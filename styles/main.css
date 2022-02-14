@@ -2200,11 +2200,11 @@ p > code {
       }.box-scale > #landlord {
       transform: scale(1);
     }body {
-      cursor: url('/media/curs/AppStarting.cur'), default;
+      cursor: url('/media/curs/default_normal.cur'), default;
     }a {
-      cursor: url('/media/curs/Cross.cur'), pointer !important;
+      cursor: url('/media/curs/default_link.cur'), pointer !important;
     }input, textarea, code {
-      cursor: url('/media/curs/IBeam.cur'), text !important;
+      cursor: url('/media/curs/default_texto.cur'), text !important;
     }code > span.copy-code {
       cursor: url('/media/curs/default_vertical.cur'), text !important;
     }.post img {
