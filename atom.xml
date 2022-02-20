@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://violeteternal.github.io</id>
     <title>EternalTimeLine</title>
-    <updated>2022-02-17T05:35:33.684Z</updated>
+    <updated>2022-02-20T04:51:47.079Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://violeteternal.github.io"/>
     <link rel="self" href="https://violeteternal.github.io/atom.xml"/>
@@ -116,6 +116,7 @@ int main()
 </details>
 <br>
 <h2 id="单调队列优化多重背包">单调队列优化多重背包</h2>
+<p><a href="https://2745518585.github.io/post/Monotone%20queue%20Knapsack/">巨佬的讲解</a></p>
 <p><a href="https://www.acwing.com/problem/content/6/">Acwing 6 多重背包III</a></p>
 <details>
     <summary>查看代码</summary>
