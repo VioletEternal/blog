@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客 VioletEternal EternalTimeLine">
 <meta name="description" content="Eternaltale的OI平行世界">
 <meta name="theme-color" content="#ced4da">
-<title>【题解】P1771 方程的解 | EternalTimeLine</title>
+<title>【学习笔记】扫描线 | EternalTimeLine</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1645423031748">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -44,8 +44,8 @@
 
 
 
-  <meta name="description" content="【题解】P1771 方程的解" />
-  <meta name="keywords" content="组合数学,题解,数论" />
+  <meta name="description" content="【学习笔记】扫描线" />
+  <meta name="keywords" content="离散化,学习笔记,线段树" />
 </head>
 
 <body>
@@ -564,14 +564,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://violeteternal.github.io/post/key-p1771/"> 【题解】P1771 方程的解 </a>
+    <a class="post-title-link" href="https://violeteternal.github.io/post/learning-note-scan-line/"> 【学习笔记】扫描线 </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-02-10 14:36:08">2022-02-10</span>
+      <span class="publish-time" data-t="2022-02-21 13:38:22">2022-02-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -579,10 +579,10 @@
       <i class="fa fa-folder-o"></i>
       <span class="pc-show language" data-lan="category-in">标签:</span>
        
-      <a href="https://violeteternal.github.io/tag/D1-6N0cVL/"> <span>组合数学</span> </a>、   
-      <a href="https://violeteternal.github.io/tag/YhO8AhuQLs/"> <span>题解</span> </a>、   
-      <a href="https://violeteternal.github.io/tag/4wPDury-9s/">
-        <span>数论</span>
+      <a href="https://violeteternal.github.io/tag/dftjF6HjW/"> <span>离散化</span> </a>、   
+      <a href="https://violeteternal.github.io/tag/8sx7ey24nm/"> <span>学习笔记</span> </a>、   
+      <a href="https://violeteternal.github.io/tag/GmGwxXTN6q/">
+        <span>线段树</span>
       </a>
        
     </span>
@@ -591,7 +591,7 @@
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >3<span class="language" data-lan="minute"
+        >4<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -600,7 +600,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >418<span class="pc-show language" data-lan="words"
+        >685<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -610,21 +610,15 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p><a href="https://www.luogu.com.cn/problem/P1771">题目传送门</a></p>
+              <p><a href="https://www.luogu.com.cn/problem/P5490">P5490 扫描线</a></p>
 <h2 id="思路">思路</h2>
-<ol>
-<li>计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
-</ol>
-<p>使用快速幂，时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
-<ol start="2">
-<li>推导答案</li>
-</ol>
-<p><s>过程略</s>，得到答案即为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>−</mo><mn>1</mn></mrow><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">C^{k-1}_{g(x)-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4044389999999998em;vertical-align:-0.5151999999999999em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8892389999999999em;"><span style="top:-2.3598em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">x</span><span class="mclose mtight">)</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1031310000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5151999999999999em;"><span></span></span></span></span></span></span></span></span></span> ，也是杨辉三角第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">g(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 行的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数。</p>
-<ol start="3">
-<li>高精度求答案即可</li>
-</ol>
+<p>用线段树维护一个横区间内所有的矩形个数，对于每个不为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 的区间则计算答案。</p>
+<p>因为坐标过大，所以线段树维护的是离散化之后的坐标。</p>
+<p>在扫描线算法中，我们总共需要两次排序：将端点的横坐标排序和横线的纵坐标排序。在进行排序之后，我们还需要将端点横坐标离散化和去重，用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>T</mi><mi>L</mi></mrow><annotation encoding="application/x-tex">STL</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">L</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mi>n</mi><mi>i</mi><mi>q</mi><mi>u</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">unique</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span></span></span></span> 函数就可以了。</p>
+<p>最后，扫描横边，查询每一个横边所在区间的竖边即可。</p>
+<p><a href="https://2745518585.github.io/post/Scan%20line/">参考资料：赵悦岑's blog'</a></p>
 <h2 id="ac-code">AC Code：</h2>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
+<pre><code class="language-c++">#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;cmath&gt;
 #include&lt;cstring&gt;
@@ -641,8 +635,7 @@
 #define underMin(x,y) ((x)&lt;(y)?(x):(y))
 typedef long long ll;
 using namespace std;
-const int Mod=1000;
-const int MAXN=151;
+const int MAXN=1e6+1;
 template&lt;class T&gt;
 inline void underRead(T &amp;x)
 {
@@ -652,52 +645,77 @@ inline void underRead(T &amp;x)
     while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
     if(t) x=-x;
 }
-int k,x,f[1001][101][MAXN];
-int a[10001][MAXN],j;
-inline int underQPow(int a,int b,int p)
+struct Segment_Tree
 {
-    int t=b,res=1;
-    while(t)
-    {
-        if(t&amp;1) res=(res*a)%p;
-        a=(a*a)%p;
-        t&gt;&gt;=1;
-    }
-    return res%p;
+    int l,r,dat;
+    ll tag;
+}Tree[MAXN&lt;&lt;2];
+struct Sort_Str
+{
+    ll l,r,dat;
+    int tag;
+}Num[MAXN&lt;&lt;2];
+int n,m;
+ll b[MAXN&lt;&lt;4],l1,l2,r1,r2;
+inline bool underCmp(Sort_Str a,Sort_Str b)
+{
+    return a.dat&lt;b.dat;
 }
-inline void underAdd(int c[],int a[],int b[])
+inline void underPushUp(int p)
 {
-    for(int i=0,t=0;i&lt;MAXN;++i)
+    if(Tree[p].dat) Tree[p].tag=b[Tree[p].r+1]-b[Tree[p].l];
+    else Tree[p].tag=Tree[p&lt;&lt;1].tag+Tree[p&lt;&lt;1|1].tag;
+}
+inline void underBuild(int p,int l,int r)
+{
+    Tree[p].l=l,Tree[p].r=r,Tree[p].tag=Tree[p].dat=0;
+    if(l==r) return ;
+    int mid=(l+r)&gt;&gt;1;
+    underBuild(p&lt;&lt;1,l,mid),underBuild(p&lt;&lt;1|1,mid+1,r);
+}
+inline void underAdd(int p,ll l,ll r,int k)
+{
+    if(b[Tree[p].l]&gt;=r||b[Tree[p].r+1]&lt;=l) return ;
+    if(b[Tree[p].l]&gt;=l&amp;&amp;b[Tree[p].r+1]&lt;=r)
     {
-        t+=a[i]+b[i];
-        c[i]=t%10;
-        t/=10;
+        Tree[p].dat+=k;
+        underPushUp(p);
+        return ;
     }
+    underAdd(p&lt;&lt;1,l,r,k),underAdd(p&lt;&lt;1|1,l,r,k);
+    underPushUp(p);
 }
 int main()
 {
-    // freopen(&quot;equation.in&quot;,&quot;r&quot;,stdin);
-    // freopen(&quot;equation.out&quot;,&quot;w&quot;,stdout);
-    underRead(k),underRead(x);
-    int n=underQPow(x%Mod,x,Mod);
-    //C(n-1,k-1)
-    for(int i=0;i&lt;n;++i)
-        for(int j=0;j&lt;=i&amp;&amp;j&lt;k;++j)
-        {
-            if(!j) f[i][j][0]=1;
-            else underAdd(f[i][j],f[i-1][j],f[i-1][j-1]);
-        }
-    int *g=f[n-1][k-1];
-    int i=MAXN-1;
-    while(!g[i]) --i;
-    while(i&gt;=0) printf(&quot;%d&quot;,g[i--]);
+    // freopen(&quot;segmenttree.in&quot;,&quot;r&quot;,stdin);
+    // freopen(&quot;segmenttree.out&quot;,&quot;w&quot;,stdout);
+    underRead(n);
+    for(int i=1;i&lt;=n;++i)
+    {
+        scanf(&quot;%lld%lld%lld%lld&quot;,&amp;l1,&amp;r1,&amp;l2,&amp;r2);
+        Num[(i&lt;&lt;1)-1]=(Sort_Str){l1,l2,r1,1};
+        Num[i&lt;&lt;1]=(Sort_Str){l1,l2,r2,-1};
+        b[(i&lt;&lt;1)-1]=l1,b[i&lt;&lt;1]=l2;
+    }
+    n&lt;&lt;=1;
+    sort(Num+1,Num+1+n,underCmp);
+    sort(b+1,b+1+n);
+    m=unique(b+1,b+n+1)-(b+1);
+    underBuild(1,1,m-1);
+    ll s=0;
+    for(int i=1;i&lt;n;++i)
+    {
+        underAdd(1,Num[i].l,Num[i].r,Num[i].tag);
+        s+=Tree[1].tag*(Num[i+1].dat-Num[i].dat);
+        // printf(&quot;%d %d\n&quot;,Tree[1].tag,(Num[i+1].dat-Num[i].dat));
+    }
+    printf(&quot;%lld&quot;,s);
     return 0;
 }
 /*
-3 2
-
-n=x-1
-m=k-1
+2
+100 100 200 200
+150 150 250 255
 */
 </code></pre>
 
@@ -716,7 +734,7 @@ m=k-1
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://violeteternal.github.io/post/key-p1771/" title="【题解】P1771 方程的解">https://violeteternal.github.io/post/key-p1771/</a>
+      <a href="https://violeteternal.github.io/post/learning-note-scan-line/" title="【学习笔记】扫描线">https://violeteternal.github.io/post/learning-note-scan-line/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -725,25 +743,21 @@ m=k-1
   </ul>
   <div class="tags">
     
-      <a href="https://violeteternal.github.io/tag/D1-6N0cVL/"># 组合数学</a>
+      <a href="https://violeteternal.github.io/tag/dftjF6HjW/"># 离散化</a>
     
-      <a href="https://violeteternal.github.io/tag/YhO8AhuQLs/"># 题解</a>
+      <a href="https://violeteternal.github.io/tag/8sx7ey24nm/"># 学习笔记</a>
     
-      <a href="https://violeteternal.github.io/tag/4wPDury-9s/"># 数论</a>
+      <a href="https://violeteternal.github.io/tag/GmGwxXTN6q/"># 线段树</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="【题解】P1350 车的放置" href="https://violeteternal.github.io/post/key-p1350/">【题解】P1350 车的放置</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="【题解】P1350 车的放置" href="https://violeteternal.github.io/post/key-p1350/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="【题解】P3193 GT考试" href="https://violeteternal.github.io/post/key-p3193/">【题解】P3193 GT考试</a>
-        <a class="nav-mobile-next" title="【题解】P3193 GT考试" href="https://violeteternal.github.io/post/key-p3193/">下一篇</a>
+        <a class="nav-pc-next" title="【学习笔记】单调队列优化Dp" href="https://violeteternal.github.io/post/learning-note-monotonous-queue-of-dp/">【学习笔记】单调队列优化Dp</a>
+        <a class="nav-mobile-next" title="【学习笔记】单调队列优化Dp" href="https://violeteternal.github.io/post/learning-note-monotonous-queue-of-dp/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

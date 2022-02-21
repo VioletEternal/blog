@@ -9,7 +9,7 @@
 <meta name="description" content="Eternaltale的OI平行世界">
 <meta name="theme-color" content="#ced4da">
 <title>【学习笔记】闫氏DP分析法 | EternalTimeLine</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1645419544682">
+<link rel="shortcut icon" href="/favicon.ico?v=1645423031748">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -227,13 +227,13 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">24</span>
+        <span class="site-item-stat-count">25</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">19</span>
+        <span class="site-item-stat-count">20</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -1752,6 +1752,119 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://violeteternal.github.io/post/learning-note-scan-line/"" data-c="
+          &lt;p&gt;&lt;a href=&#34;https://www.luogu.com.cn/problem/P5490&#34;&gt;P5490 扫描线&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;p&gt;用线段树维护一个横区间内所有的矩形个数，对于每个不为 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;0&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.64444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的区间则计算答案。&lt;/p&gt;
+&lt;p&gt;因为坐标过大，所以线段树维护的是离散化之后的坐标。&lt;/p&gt;
+&lt;p&gt;在扫描线算法中，我们总共需要两次排序：将端点的横坐标排序和横线的纵坐标排序。在进行排序之后，我们还需要将端点横坐标离散化和去重，用 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;L&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;STL&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;L&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 的 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;q&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;unique&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.85396em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;e&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; 函数就可以了。&lt;/p&gt;
+&lt;p&gt;最后，扫描横边，查询每一个横边所在区间的竖边即可。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://2745518585.github.io/post/Scan%20line/&#34;&gt;参考资料：赵悦岑&#39;s blog&#39;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ac-code&#34;&gt;AC Code：&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;cstdlib&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#include&amp;lt;ctime&amp;gt;
+#include&amp;lt;iomanip&amp;gt;
+#include&amp;lt;queue&amp;gt;
+#include&amp;lt;stack&amp;gt;
+#include&amp;lt;map&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#define gh() getchar()
+#define underMax(x,y) ((x)&amp;gt;(y)?(x):(y))
+#define underMin(x,y) ((x)&amp;lt;(y)?(x):(y))
+typedef long long ll;
+using namespace std;
+const int MAXN=1e6+1;
+template&amp;lt;class T&amp;gt;
+inline void underRead(T &amp;amp;x)
+{
+    x=0;
+    char ch=gh(),t=0;
+    while(ch&amp;lt;&#39;0&#39;||ch&amp;gt;&#39;9&#39;) t|=ch==&#39;-&#39;,ch=gh();
+    while(ch&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;ch&amp;lt;=&#39;9&#39;) x=(x&amp;lt;&amp;lt;3)+(x&amp;lt;&amp;lt;1)+(ch^48),ch=gh();
+    if(t) x=-x;
+}
+struct Segment_Tree
+{
+    int l,r,dat;
+    ll tag;
+}Tree[MAXN&amp;lt;&amp;lt;2];
+struct Sort_Str
+{
+    ll l,r,dat;
+    int tag;
+}Num[MAXN&amp;lt;&amp;lt;2];
+int n,m;
+ll b[MAXN&amp;lt;&amp;lt;4],l1,l2,r1,r2;
+inline bool underCmp(Sort_Str a,Sort_Str b)
+{
+    return a.dat&amp;lt;b.dat;
+}
+inline void underPushUp(int p)
+{
+    if(Tree[p].dat) Tree[p].tag=b[Tree[p].r+1]-b[Tree[p].l];
+    else Tree[p].tag=Tree[p&amp;lt;&amp;lt;1].tag+Tree[p&amp;lt;&amp;lt;1|1].tag;
+}
+inline void underBuild(int p,int l,int r)
+{
+    Tree[p].l=l,Tree[p].r=r,Tree[p].tag=Tree[p].dat=0;
+    if(l==r) return ;
+    int mid=(l+r)&amp;gt;&amp;gt;1;
+    underBuild(p&amp;lt;&amp;lt;1,l,mid),underBuild(p&amp;lt;&amp;lt;1|1,mid+1,r);
+}
+inline void underAdd(int p,ll l,ll r,int k)
+{
+    if(b[Tree[p].l]&amp;gt;=r||b[Tree[p].r+1]&amp;lt;=l) return ;
+    if(b[Tree[p].l]&amp;gt;=l&amp;amp;&amp;amp;b[Tree[p].r+1]&amp;lt;=r)
+    {
+        Tree[p].dat+=k;
+        underPushUp(p);
+        return ;
+    }
+    underAdd(p&amp;lt;&amp;lt;1,l,r,k),underAdd(p&amp;lt;&amp;lt;1|1,l,r,k);
+    underPushUp(p);
+}
+int main()
+{
+    // freopen(&amp;quot;segmenttree.in&amp;quot;,&amp;quot;r&amp;quot;,stdin);
+    // freopen(&amp;quot;segmenttree.out&amp;quot;,&amp;quot;w&amp;quot;,stdout);
+    underRead(n);
+    for(int i=1;i&amp;lt;=n;++i)
+    {
+        scanf(&amp;quot;%lld%lld%lld%lld&amp;quot;,&amp;amp;l1,&amp;amp;r1,&amp;amp;l2,&amp;amp;r2);
+        Num[(i&amp;lt;&amp;lt;1)-1]=(Sort_Str){l1,l2,r1,1};
+        Num[i&amp;lt;&amp;lt;1]=(Sort_Str){l1,l2,r2,-1};
+        b[(i&amp;lt;&amp;lt;1)-1]=l1,b[i&amp;lt;&amp;lt;1]=l2;
+    }
+    n&amp;lt;&amp;lt;=1;
+    sort(Num+1,Num+1+n,underCmp);
+    sort(b+1,b+1+n);
+    m=unique(b+1,b+n+1)-(b+1);
+    underBuild(1,1,m-1);
+    ll s=0;
+    for(int i=1;i&amp;lt;n;++i)
+    {
+        underAdd(1,Num[i].l,Num[i].r,Num[i].tag);
+        s+=Tree[1].tag*(Num[i+1].dat-Num[i].dat);
+        // printf(&amp;quot;%d %d\n&amp;quot;,Tree[1].tag,(Num[i+1].dat-Num[i].dat));
+    }
+    printf(&amp;quot;%lld&amp;quot;,s);
+    return 0;
+}
+/*
+2
+100 100 200 200
+150 150 250 255
+*/
+&lt;/code&gt;&lt;/pre&gt;
+">【学习笔记】扫描线</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://violeteternal.github.io/post/good/"" data-c="
