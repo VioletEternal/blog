@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客 VioletEternal EternalTimeLine">
 <meta name="description" content="Eternaltale的OI平行世界">
 <meta name="theme-color" content="#ced4da">
-<title>【题解】P3193 GT考试 | EternalTimeLine</title>
+<title>【学习笔记】网络最大流Dinic | EternalTimeLine</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1645937394593">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -44,8 +44,8 @@
 
 
 
-  <meta name="description" content="【题解】P3193 GT考试" />
-  <meta name="keywords" content="矩阵快速幂，矩阵乘法,分析法,DP,题解,数论" />
+  <meta name="description" content="【学习笔记】网络最大流Dinic" />
+  <meta name="keywords" content="最大流,网络流,Dinic,学习笔记" />
 </head>
 
 <body>
@@ -235,7 +235,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -308,6 +309,195 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -395,14 +585,14 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://violeteternal.github.io/blog/post/key-p3193/"> 【题解】P3193 GT考试 </a>
+    <a class="post-title-link" href="https://violeteternal.github.io/blog/post/maximum-flow-of-dinic/"> 【学习笔记】网络最大流Dinic </a>
   </h1>
   <div class="post-meta">
     
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2022-02-10 10:07:49">2022-02-10</span>
+      <span class="publish-time" data-t="2022-02-26 20:47:57">2022-02-26</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -410,12 +600,11 @@
       <i class="fa fa-folder-o"></i>
       <span class="pc-show language" data-lan="category-in">标签:</span>
        
-      <a href="https://violeteternal.github.io/blog/tag/ZAha7AFg_/"> <span>矩阵快速幂，矩阵乘法</span> </a>、   
-      <a href="https://violeteternal.github.io/blog/tag/7IdwW0bZW/"> <span>分析法</span> </a>、   
-      <a href="https://violeteternal.github.io/blog/tag/wL9E2rvrx/"> <span>DP</span> </a>、   
-      <a href="https://violeteternal.github.io/blog/tag/YhO8AhuQLs/"> <span>题解</span> </a>、   
-      <a href="https://violeteternal.github.io/blog/tag/4wPDury-9s/">
-        <span>数论</span>
+      <a href="https://violeteternal.github.io/blog/tag/Hog5gNUyt/"> <span>最大流</span> </a>、   
+      <a href="https://violeteternal.github.io/blog/tag/u3bKBJRfa1/"> <span>网络流</span> </a>、   
+      <a href="https://violeteternal.github.io/blog/tag/SZRuymHlzJ/"> <span>Dinic</span> </a>、   
+      <a href="https://violeteternal.github.io/blog/tag/8sx7ey24nm/">
+        <span>学习笔记</span>
       </a>
        
     </span>
@@ -424,7 +613,7 @@
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
       <span
-        >3<span class="language" data-lan="minute"
+        >1<span class="language" data-lan="minute"
           >分钟</span
         ></span
       >
@@ -433,7 +622,7 @@
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
       <span
-        >503<span class="pc-show language" data-lan="words"
+        >2<span class="pc-show language" data-lan="words"
           >字数</span
         ></span
       >
@@ -443,98 +632,7 @@
 </section>
 
             <div class="post-body next-md-body" id="post_body">
-              <p><a href="https://www.luogu.com.cn/problem/P3193">题目传送门</a></p>
-<p>预处理 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">DP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 数组的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>M</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">KMP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span> 预配指针，再矩阵快速幂求出所有的集合。</p>
-<p>使用闫氏DP分析法可得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 数组的集合意义。</p>
-<p>AC Code：</p>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-#include&lt;cmath&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;algorithm&gt;
-#include&lt;ctime&gt;
-#include&lt;iomanip&gt;
-#include&lt;queue&gt;
-#include&lt;stack&gt;
-#include&lt;map&gt;
-#include&lt;vector&gt;
-#define gh() getchar()
-#define underMax(x,y) ((x)&gt;(y)?(x):(y))
-#define underMin(x,y) ((x)&lt;(y)?(x):(y))
-typedef long long ll;
-using namespace std;
-const int MAXN=21;
-template&lt;class T&gt;
-inline void underRead(T &amp;x)
-{
-    x=0;
-    char ch=gh(),t=0;
-    while(ch&lt;'0'||ch&gt;'9') t|=ch=='-',ch=gh();
-    while(ch&gt;='0'&amp;&amp;ch&lt;='9') x=(x&lt;&lt;3)+(x&lt;&lt;1)+(ch^48),ch=gh();
-    if(t) x=-x;
-}
-int N,M,K;
-int f[MAXN][MAXN];      //f(i,j)表示所有长度为i，且不包含M串
-                        //且该串的末尾部分和S串当前匹配的最大长度为j
-                        //的所有字符串的集合。
-char str[MAXN];
-int Kmp[MAXN];
-inline void underExpr(int c[][MAXN],int a[][MAXN],int b[][MAXN])
-{
-    static int t[MAXN][MAXN];
-    memset(t,0,sizeof(t));
-    for(int i=0;i&lt;M;++i)
-        for(int j=0;j&lt;M;++j)
-            for(int k=0;k&lt;M;++k)
-                t[i][j]=(t[i][j]+a[i][k]*b[k][j])%K;
-    for(int i=0;i&lt;M;++i)
-        for(int j=0;j&lt;M;++j)
-            c[i][j]=t[i][j];
-}
-inline int underQuickPow(int k)
-{
-    int f0[MAXN][MAXN]={1};
-    while(k)
-    {
-        if(k&amp;1) underExpr(f0,f0,f);
-        underExpr(f,f,f);
-        k&gt;&gt;=1;
-    }
-    int res=0;
-    for(int i=0;i&lt;M;++i) res=(res+f0[0][i])%K;
-    return res;
-}
-int main()
-{
-    // freopen(&quot;GTtest.in&quot;,&quot;r&quot;,stdin);
-    // freopen(&quot;GTtest.out&quot;,&quot;w&quot;,stdout);
-    underRead(N),underRead(M),underRead(K);
-    scanf(&quot;%s&quot;,str+1);
-    for(int i=2,j=0;i&lt;=M;++i)
-    {
-        while(j&amp;&amp;str[j+1]!=str[i]) j=Kmp[j];
-        if(str[j+1]==str[i])++j;
-        Kmp[i]=j;
-    }
-    //初始化f
-    for(int j=0;j&lt;M;++j)
-        for(int c='0';c&lt;='9';++c)
-        {
-            int k=j;
-            while(k&amp;&amp;str[k+1]!=c) k=Kmp[k];
-            if(str[k+1]==c) ++k;
-            if(k&lt;M) ++f[j][k];
-        }
-    //f(n)=f(0)+A^N
-    printf(&quot;%d&quot;,underQuickPow(N));
-    return 0;
-}
-/*
-4 3 100
-111
-*/
-</code></pre>
+              <h2 id="定义">定义</h2>
 
             </div>
             
@@ -551,7 +649,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://violeteternal.github.io/blog/post/key-p3193/" title="【题解】P3193 GT考试">https://violeteternal.github.io/blog/post/key-p3193/</a>
+      <a href="https://violeteternal.github.io/blog/post/maximum-flow-of-dinic/" title="【学习笔记】网络最大流Dinic">https://violeteternal.github.io/blog/post/maximum-flow-of-dinic/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -560,29 +658,23 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://violeteternal.github.io/blog/tag/ZAha7AFg_/"># 矩阵快速幂，矩阵乘法</a>
+      <a href="https://violeteternal.github.io/blog/tag/Hog5gNUyt/"># 最大流</a>
     
-      <a href="https://violeteternal.github.io/blog/tag/7IdwW0bZW/"># 分析法</a>
+      <a href="https://violeteternal.github.io/blog/tag/u3bKBJRfa1/"># 网络流</a>
     
-      <a href="https://violeteternal.github.io/blog/tag/wL9E2rvrx/"># DP</a>
+      <a href="https://violeteternal.github.io/blog/tag/SZRuymHlzJ/"># Dinic</a>
     
-      <a href="https://violeteternal.github.io/blog/tag/YhO8AhuQLs/"># 题解</a>
-    
-      <a href="https://violeteternal.github.io/blog/tag/4wPDury-9s/"># 数论</a>
+      <a href="https://violeteternal.github.io/blog/tag/8sx7ey24nm/"># 学习笔记</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="【题解】P1771 方程的解" href="https://violeteternal.github.io/blog/post/key-p1771/">【题解】P1771 方程的解</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="【题解】P1771 方程的解" href="https://violeteternal.github.io/blog/post/key-p1771/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="【学习笔记】闫氏DP分析法" href="https://violeteternal.github.io/blog/post/learning-note-yan-dp-analysis/">【学习笔记】闫氏DP分析法</a>
-        <a class="nav-mobile-next" title="【学习笔记】闫氏DP分析法" href="https://violeteternal.github.io/blog/post/learning-note-yan-dp-analysis/">下一篇</a>
+        <a class="nav-pc-next" title="【学习笔记】ST表（Sparse Table，稀疏表）" href="https://violeteternal.github.io/blog/post/learning-note-sparse-table/">【学习笔记】ST表（Sparse Table，稀疏表）</a>
+        <a class="nav-mobile-next" title="【学习笔记】ST表（Sparse Table，稀疏表）" href="https://violeteternal.github.io/blog/post/learning-note-sparse-table/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
